@@ -137,9 +137,6 @@
         /* --- MAPAS --- */
         iframe { width: 100%; height: 200px; border-radius: 12px; margin-top: 15px; border: 0; }
 
-        /* --- REPRODUCTOR OCULTO DE YOUTUBE --- */
-        #youtube-player { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
-
         /* --- FONDOS --- */
         .bg-rosas { background: url("https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1920&q=80") center fixed; background-size: cover; }
         .overlay { position: absolute; inset: 0; background: rgba(255,255,255,0.6); z-index: 1; }
@@ -164,7 +161,9 @@
 </div>
 
 <div id="musicBtn" onclick="toggleMusic()">▶</div>
-<div id="youtube-player"></div>
+<audio id="musica" loop prefetch="auto">
+    <source src="https://www.dropbox.com/scl/fi/qbbbvj5glh3ze2iiw8y8l/Christina-Perri-A-Thousand-Years-Piano-Cello-Cover-The-Piano-Guys.m4a?rlkey=r370gckquyzqdumjg345xfx6y&st=u7pk6l3y&raw=1" type="audio/mp4">
+</audio>
 
 <section class="portada">
     <div class="content-wrap">
@@ -218,12 +217,12 @@
             <div class="card">
                 <div class="titulo" style="font-size: 1.6rem;">Ceremonia</div>
                 <p><strong>Parroquia San José</strong><br>5:00 PM</p>
-                <iframe src="http://googleusercontent.com/maps.google.com/9"></iframe>
+                <iframe src="https://www.google.com/maps0"></iframe>
             </div>
             <div class="card">
                 <div class="titulo" style="font-size: 1.6rem;">Recepción</div>
                 <p><strong>Salón Jardín Real</strong><br>7:30 PM</p>
-                <iframe src="http://googleusercontent.com/maps.google.com/9"></iframe>
+                <iframe src="https://www.google.com/maps0"></iframe>
             </div>
         </div>
     </div>
@@ -288,26 +287,9 @@
     </div>
 </section>
 
-<script src="https://www.youtube.com/iframe_api"></script>
-
 <script>
-let player;
+const musica = document.getElementById("musica");
 let isPlaying = false;
-
-// Esta función es llamada automáticamente por el script de YouTube para inicializar el video de fondo
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('youtube-player', {
-        height: '1',
-        width: '1',
-        videoId: 'wohwc9MQt6A', // ID de la canción Esclava Remix
-        playerVars: {
-            'autoplay': 0,
-            'controls': 0,
-            'loop': 1,
-            'playlist': 'wohwc9MQt6A' // Necesario para que repita en bucle
-        }
-    });
-}
 
 function abrirInvitacion() {
     document.getElementById('sobre-capa').style.transform = 'translateY(-100%)';
@@ -317,15 +299,15 @@ function abrirInvitacion() {
 
 function toggleMusic(){
     const btn = document.getElementById("musicBtn");
-    if (player && typeof player.playVideo === 'function') {
-        if(!isPlaying){ 
-            player.playVideo(); 
-            btn.innerHTML = "❚❚"; 
-        } else { 
-            player.pauseVideo(); 
-            btn.innerHTML = "▶"; 
-        }
-        isPlaying = !isPlaying;
+    if(!isPlaying){ 
+        musica.play().then(() => {
+            btn.innerHTML = "❚❚";
+            isPlaying = true;
+        }).catch(e => console.log("La reproducción interactiva falló o necesita acción del usuario:", e));
+    } else { 
+        musica.pause(); 
+        btn.innerHTML = "▶"; 
+        isPlaying = false;
     }
 }
 
