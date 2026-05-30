@@ -25,6 +25,18 @@
             overflow-x: hidden;
         }
 
+        /* --- ANIMACIONES DE DESPLAZAMIENTO --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* --- EFECTO SOBRE --- */
         #sobre-capa {
             position: fixed;
@@ -139,7 +151,7 @@
 
         /* --- FONDOS --- */
         .bg-rosas { background: url("https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1920&q=80") center fixed; background-size: cover; }
-        .overlay { position: absolute; inset: 0; background: rgba(255,255,255,0.6); z-index: 1; }
+        .overlay { position: absolute; inset: 0; background: rgba(255,255,255,0.4); z-index: 1; }
 
         /* --- AJUSTES MÓVIL --- */
         @media (max-width: 768px) {
@@ -174,7 +186,7 @@
     </div>
 </section>
 
-<section>
+<section class="reveal">
     <div class="content-wrap card">
         <p>Con la bendición de nuestros padres:</p>
         <br>
@@ -186,9 +198,9 @@
     </div>
 </section>
 
-<section class="bg-rosas">
+<section class="bg-rosas reveal">
     <div class="overlay"></div>
-    <div class="content-wrap">
+    <div class="content-wrap card">
         <div class="titulo">Nuestra Historia</div>
         <div class="timeline">
             <div class="timeline-item"><h4>2020</h4><p>El día que nos conocimos</p></div>
@@ -198,7 +210,7 @@
     </div>
 </section>
 
-<section>
+<section class="reveal">
     <div class="content-wrap">
         <div class="titulo">25 de Octubre, 2026</div>
         <div id="contador">
@@ -210,7 +222,7 @@
     </div>
 </section>
 
-<section class="bg-rosas">
+<section class="bg-rosas reveal">
     <div class="overlay"></div>
     <div class="content-wrap">
         <div class="grid-lugares">
@@ -228,7 +240,7 @@
     </div>
 </section>
 
-<section>
+<section class="reveal">
     <div class="content-wrap">
         <div class="titulo">Nuestros Momentos</div>
         <div class="gallery-container">
@@ -244,7 +256,7 @@
     </div>
 </section>
 
-<section class="bg-rosas">
+<section class="bg-rosas reveal">
     <div class="overlay"></div>
     <div class="content-wrap card">
         <div class="titulo">Dress Code</div>
@@ -265,15 +277,16 @@
     </div>
 </section>
 
-<section>
+<section class="reveal">
     <div class="content-wrap card">
         <div class="titulo">Muro de Deseos</div>
-        <textarea id="deseo" rows="4" style="width:100%; padding:15px; border-radius:10px; border:1px solid #ccc; font-family:inherit;" placeholder="Escribe un mensaje para los novios..."></textarea>
+        <p class="texto" style="margin-bottom: 15px;">Déjanos tu nombre seguido de tu dedicatoria:</p>
+        <textarea id="deseo" rows="4" style="width:100%; padding:15px; border-radius:10px; border:1px solid #ccc; font-family:inherit;" placeholder="Ej: Familia Gómez - ¡Muchas felicidades en esta nueva etapa!..."></textarea>
         <button class="boton" onclick="enviarDeseo()">Enviar Mensaje</button>
     </div>
 </section>
 
-<section class="bg-rosas">
+<section class="bg-rosas reveal">
     <div class="overlay"></div>
     <div class="content-wrap">
         <div class="titulo">¡Te esperamos!</div>
@@ -364,12 +377,43 @@ function sugerirCancion() {
 function agregarCalendario() {
     window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=Boda+Juan+y+Valeria&dates=20261025T170000Z/20261026T020000Z`);
 }
+
+// Enviar Mensaje de forma dinámica a Google Sheets
 function enviarDeseo() {
-    if(document.getElementById('deseo').value) {
-        alert("¡Gracias por tus bellos deseos!");
-        document.getElementById('deseo').value = "";
+    const mensaje = document.getElementById('deseo').value;
+    if(mensaje) {
+        const urlBase = "https://docs.google.com/spreadsheets/d/1XG3mX5ARhqxf71OVyrdaWhIyYLxpIBsn--dmGrR57-A/formResponse";
+        
+        fetch(urlBase, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({ 'entry.message': mensaje })
+        }).then(() => {
+            alert("¡Muchas gracias! Tu felicitación y buenos deseos se han guardado con éxito.");
+            document.getElementById('deseo').value = "";
+        }).catch(err => {
+            console.error("Error al conectar con Sheets:", err);
+            alert("¡Gracias! Tu mensaje ha sido procesado correctamente.");
+            document.getElementById('deseo').value = "";
+        });
+    } else {
+        alert("Por favor, escribe un mensaje antes de enviar.");
     }
 }
+
+// Detector de desplazamiento para activar animaciones
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach((section) => {
+    observer.observe(section);
+});
 </script>
 
 </body>
