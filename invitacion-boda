@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda Juan & Valeria</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --dorado: #b79b78;
+            --dorado-oscuro: #967d5e;
+            --texto: #3a2f25;
+            --blanco-trans: rgba(255, 255, 255, 0.85);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--texto);
+            background-color: #fcfbf9;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- EFECTO SOBRE --- */
+        #sobre-capa {
+            position: fixed;
+            inset: 0;
+            background: #f4f1ea;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .sobre-contenido { text-align: center; cursor: pointer; }
+        .sobre-contenido img { width: 120px; margin-bottom: 20px; animation: heartbeat 2.5s infinite; }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- ANIMACIONES --- */
+        .anim {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+        .anim.visible { opacity: 1; transform: translateY(0); }
+
+        /* --- SECCIONES --- */
+        section {
+            position: relative;
+            padding: 100px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), rgba(255,255,255,0.7));
+            z-index: 1;
+        }
+
+        .content-wrap { position: relative; z-index: 2; width: 100%; max-width: 1000px; text-align: center; }
+
+        /* --- FONDOS --- */
+        .portada {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+                        url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80") no-repeat center center;
+            background-size: cover;
+            color: white;
+        }
+        .bg-rosas { background: url("https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1920&q=80") no-repeat center center fixed; background-size: cover; }
+        .bg-novios { background: url("https://images.unsplash.com/photo-1520857014576-2c4f4c972b57?auto=format&fit=crop&w=1920&q=80") no-repeat center center fixed; background-size: cover; }
+
+        /* --- TEXTOS --- */
+        .iniciales { font-family: 'Playfair Display', serif; font-size: clamp(4rem, 15vw, 8rem); font-style: italic; text-shadow: 2px 2px 10px rgba(0,0,0,0.2); }
+        .nombres { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 5vw, 3rem); font-style: italic; }
+        .titulo { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-style: italic; margin-bottom: 25px; color: var(--dorado-oscuro); }
+        .texto { font-size: clamp(1rem, 2vw, 1.3rem); max-width: 800px; margin: 0 auto; }
+        .firma { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--dorado); margin-top: 20px; }
+
+        /* --- TIMELINE --- */
+        .timeline { margin: 40px 0; position: relative; }
+        .timeline::before { content: ''; position: absolute; left: 50%; width: 2px; height: 100%; background: var(--dorado); }
+        .timeline-item { margin-bottom: 30px; position: relative; width: 50%; padding: 20px; }
+        .timeline-item:nth-child(odd) { left: 0; text-align: right; }
+        .timeline-item:nth-child(even) { left: 50%; text-align: left; }
+        .timeline-item h4 { color: var(--dorado-oscuro); font-size: 1.5rem; }
+
+        /* --- GALERÍA --- */
+        .gallery-container { overflow: hidden; position: relative; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .gallery-track { display: flex; transition: transform 0.5s ease; }
+        .gallery-track img { width: 100%; flex-shrink: 0; object-fit: cover; height: 500px; }
+
+        /* --- CONTADOR --- */
+        #contador { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
+        .count-item { background: white; padding: 15px; border-radius: 10px; min-width: 80px; border-bottom: 3px solid var(--dorado); }
+        .count-num { display: block; font-size: 1.8rem; font-weight: 600; color: var(--dorado-oscuro); }
+
+        /* --- TARJETAS --- */
+        .card { background: var(--blanco-trans); padding: 50px 30px; border-radius: 20px; backdrop-filter: blur(5px); margin-bottom: 30px; }
+        iframe { width: 100%; height: 250px; border-radius: 15px; border: none; margin-top: 20px; }
+
+        /* --- BOTONES --- */
+        .boton { margin-top: 20px; display: inline-flex; align-items: center; gap: 12px; padding: 15px 40px; border-radius: 50px; background: var(--dorado); color: white; text-decoration: none; font-weight: 600; transition: 0.3s; cursor: pointer; border: none; box-shadow: 0 10px 20px rgba(183,155,120,0.3); }
+        .boton:hover { background: var(--dorado-oscuro); transform: translateY(-3px); }
+        #musicBtn { position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px; background: var(--dorado); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; z-index: 1000; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+
+        /* --- FORMULARIOS --- */
+        textarea { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #ccc; font-family: inherit; margin-top: 15px; resize: none; }
+
+        @media (max-width: 768px) {
+            .timeline::before { left: 20px; }
+            .timeline-item { width: 100%; left: 0 !important; text-align: left !important; padding-left: 45px; }
+            .gallery-track img { height: 300px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="sobre-capa" onclick="abrirInvitacion()">
+    <div class="sobre-contenido">
+        <img src="https://cdn-icons-png.flaticon.com/512/3063/3063990.png" alt="Sobre">
+        <p class="titulo" style="font-size: 1.5rem;">Toca para abrir la invitación</p>
+    </div>
+</div>
+
+<div id="musicBtn" onclick="toggleMusic()">▶</div>
+<audio id="musica" loop>
+    <source src="https://cdn.pixabay.com/audio/2022/10/03/audio_7c3cfa6d68.mp3" type="audio/mpeg">
+</audio>
+
+<section class="portada">
+    <div class="content-wrap anim">
+        <div class="iniciales">J & V</div>
+        <div class="nombres">Juan Hernández & Valeria López</div>
+        <br>
+        <button class="boton" onclick="agregarCalendario()">📅 Agregar a mi calendario</button>
+    </div>
+</section>
+
+<section class="bg-rosas">
+    <div class="overlay"></div>
+    <div class="content-wrap anim card">
+        <p class="texto">
+            Con la bendición de Dios y nuestros padres, tenemos el honor de invitarlos a nuestra unión.
+        </p>
+        <br>
+        <div class="titulo">Padres de la Novia</div>
+        <p class="texto">María López & Carlos Hernández</p>
+        <br>
+        <div class="titulo">Padres del Novio</div>
+        <p class="texto">Laura Martínez & Roberto Gómez</p>
+    </div>
+</section>
+
+<section>
+    <div class="content-wrap anim">
+        <div class="titulo">Nuestra Historia</div>
+        <div class="timeline">
+            <div class="timeline-item"><h4>2020</h4><p>Nos conocimos</p></div>
+            <div class="timeline-item"><h4>2022</h4><p>Nuestro primer viaje juntos</p></div>
+            <div class="timeline-item"><h4>2024</h4><p>¡Dijo que sí!</p></div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content-wrap anim">
+        <div class="titulo">25 de Octubre de 2026</div>
+        <p class="texto">Solo faltan…</p>
+        <div id="contador">
+            <div class="count-item"><span id="days" class="count-num">0</span><span class="count-lab">Días</span></div>
+            <div class="count-item"><span id="hours" class="count-num">0</span><span class="count-lab">Hrs</span></div>
+            <div class="count-item"><span id="mins" class="count-num">0</span><span class="count-lab">Min</span></div>
+            <div class="count-item"><span id="secs" class="count-num">0</span><span class="count-lab">Seg</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-novios">
+    <div class="overlay"></div>
+    <div class="content-wrap anim card">
+        <div class="titulo">Momentos Juntos</div>
+        <div class="gallery-container">
+            <div class="gallery-track" id="track">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80">
+                <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&w=800&q=80">
+                <img src="https://images.unsplash.com/photo-1522673607200-1648832cee98?auto=format&fit=crop&w=800&q=80">
+            </div>
+        </div>
+        <div style="margin-top: 15px;">
+            <button class="boton" onclick="moveGallery(-1)">❮</button>
+            <button class="boton" onclick="moveGallery(1)">❯</button>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content-wrap anim">
+        <div class="card">
+            <div class="titulo">Ceremonia Religiosa</div>
+            <p class="texto"><strong>Parroquia San José</strong><br>Av. Principal 123, Monterrey, NL</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3594.4087131828135!2d-100.3121!3d25.6714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDQwJzE3LjAiTiAxMDDCsDE4JzQzLjYiVw!5e0!3m2!1ses!2smx!4v1620000000000" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <div class="card">
+            <div class="titulo">Recepción</div>
+            <p class="texto"><strong>Salón Jardín Real</strong><br>Calle Eventos 456, Monterrey, NL</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3594.4087131828135!2d-100.3121!3d25.6714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDQwJzE3LjAiTiAxMDDCsDE4JzQzLjYiVw!5e0!3m2!1ses!2smx!4v1620000000000" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+</section>
+
+<section class="bg-rosas">
+    <div class="overlay"></div>
+    <div class="content-wrap anim card">
+        <div class="titulo">Código de Vestimenta</div>
+        <p class="texto"><strong>FORMAL</strong><br>Hombres: Traje / Mujeres: Vestido Largo</p>
+        <div class="paleta">
+            <div class="color-circle" style="background: #2c3e50;"></div>
+            <div class="color-circle" style="background: #95a5a6;"></div>
+            <div class="color-circle" style="background: #d4af37;"></div>
+        </div>
+        <p class="texto" style="color: #a00; font-weight: 600;">* Favor de evitar el color blanco</p>
+        <br>
+        <button class="boton" onclick="sugerirCancion()">🎵 Sugerir canción para la fiesta</button>
+    </div>
+</section>
+
+<section>
+    <div class="content-wrap anim card">
+        <div class="titulo">Muro de Buenos Deseos</div>
+        <p class="texto">¿Quieres dejarnos un mensaje especial? Nos encantará leerte.</p>
+        <textarea id="deseo" rows="4" placeholder="Escribe aquí tus deseos para nosotros..."></textarea>
+        <button class="boton" onclick="enviarDeseo()">Enviar Mensaje</button>
+    </div>
+</section>
+
+<section class="bg-novios">
+    <div class="overlay"></div>
+    <div class="content-wrap anim">
+        <div class="titulo" style="color: #3a2f25;">Nuestra Boda no sería igual sin ti</div>
+        <p class="texto" style="color: #3a2f25;">
+            A lo largo de nuestra historia, cada uno de ustedes ha dejado una huella especial en nuestras vidas. 
+            Por eso, no imaginamos este gran paso sin su compañía, sus sonrisas y su cariño.<br><br>
+            Nosotros hemos soñado mucho con este día, y lo que más deseamos es celebrarlo junto a ti. 
+            <strong>¡Te esperamos con los brazos abiertos!</strong>
+        </p>
+        <div class="firma">Juan & Valeria</div>
+        
+        <br><br>
+        
+        <p class="texto" style="color: #3a2f25;">Por favor, confírmanos tu asistencia:</p>
+        <a class="boton" href="#" onclick="confirmarAsistencia()">
+            CONFIRMAR ASISTENCIA
+        </a>
+    </div>
+</section>
+
+<script>
+function abrirInvitacion() {
+    document.getElementById('sobre-capa').style.transform = 'translateY(-100%)';
+    setTimeout(() => { document.getElementById('sobre-capa').style.display = 'none'; }, 1000);
+    if(!isPlaying) toggleMusic();
+}
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+
+const weddingDate = new Date("2026-10-25T17:00:00").getTime();
+setInterval(() => {
+    const now = new Date().getTime();
+    const gap = weddingDate - now;
+    document.getElementById("days").innerText = Math.floor(gap / (1000 * 60 * 60 * 24));
+    document.getElementById("hours").innerText = Math.floor((gap % (86400000)) / 3600000);
+    document.getElementById("mins").innerText = Math.floor((gap % 3600000) / 60000);
+    document.getElementById("secs").innerText = Math.floor((gap % 60000) / 1000);
+}, 1000);
+
+let currentIdx = 0;
+function moveGallery(dir) {
+    const track = document.getElementById('track');
+    currentIdx = (currentIdx + dir + 3) % 3;
+    track.style.transform = `translateX(-${currentIdx * 100}%)`;
+}
+
+function agregarCalendario() {
+    window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=Boda+Juan+y+Valeria&dates=20261025T170000Z/20261026T020000Z&details=¡Te+esperamos!&location=Monterrey`, '_blank');
+}
+
+function sugerirCancion() {
+    window.open(`https://wa.me/528132654324?text=${encodeURIComponent("¡Hola! Sugiero esta canción para la fiesta: ")}`, '_blank');
+}
+
+function enviarDeseo() {
+    const msg = document.getElementById('deseo').value;
+    if(msg) {
+        alert("¡Gracias por tus palabras! Nos hace mucha ilusión leerte.");
+        document.getElementById('deseo').value = "";
+    } else {
+        alert("Escribe algo antes de enviar :)");
+    }
+}
+
+function confirmarAsistencia(){
+    const n = prompt("Tu nombre completo:");
+    if(n) window.open(`https://wa.me/528132654324?text=Hola! Soy ${n}, confirmo mi asistencia a su boda.`, '_blank');
+}
+
+const musica = document.getElementById("musica");
+const btn = document.getElementById("musicBtn");
+let isPlaying = false;
+function toggleMusic(){
+    if(!isPlaying){ musica.play(); btn.innerHTML = "❚❚"; } 
+    else { musica.pause(); btn.innerHTML = "▶"; }
+    isPlaying = !isPlaying;
+}
+</script>
+
+</body>
+</html>
