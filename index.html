@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boda Juan & Valeria</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=1,700;1,900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -217,12 +217,12 @@
             <div class="card">
                 <div class="titulo" style="font-size: 1.6rem;">Ceremonia</div>
                 <p><strong>Parroquia San José</strong><br>5:00 PM</p>
-                <iframe src="https://www.google.com/maps0"></iframe>
+                <iframe src="https://maps.google.com/maps?q=Parroquia%20San%20Jos%C3%A9&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
             </div>
             <div class="card">
                 <div class="titulo" style="font-size: 1.6rem;">Recepción</div>
                 <p><strong>Salón Jardín Real</strong><br>7:30 PM</p>
-                <iframe src="https://www.google.com/maps0"></iframe>
+                <iframe src="https://maps.google.com/maps?q=Sal%C3%B3n%20Jard%C3%ADn%20Real&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
             </div>
         </div>
     </div>
@@ -290,6 +290,7 @@
 <script>
 const musica = document.getElementById("musica");
 let isPlaying = false;
+let fadeInterval;
 
 function abrirInvitacion() {
     document.getElementById('sobre-capa').style.transform = 'translateY(-100%)';
@@ -299,15 +300,37 @@ function abrirInvitacion() {
 
 function toggleMusic(){
     const btn = document.getElementById("musicBtn");
+    clearInterval(fadeInterval); 
+
     if(!isPlaying){ 
+        musica.volume = 0; 
         musica.play().then(() => {
             btn.innerHTML = "❚❚";
             isPlaying = true;
-        }).catch(e => console.log("La reproducción interactiva falló o necesita acción del usuario:", e));
+            
+            fadeInterval = setInterval(() => {
+                if (musica.volume < 0.9) {
+                    musica.volume += 0.05;
+                } else {
+                    musica.volume = 1;
+                    clearInterval(fadeInterval);
+                }
+            }, 75);
+
+        }).catch(e => console.log("Interacción requerida:", e));
     } else { 
-        musica.pause(); 
         btn.innerHTML = "▶"; 
         isPlaying = false;
+
+        fadeInterval = setInterval(() => {
+            if (musica.volume > 0.05) {
+                musica.volume -= 0.05;
+            } else {
+                musica.volume = 0;
+                musica.pause();
+                clearInterval(fadeInterval);
+            }
+        }, 75);
     }
 }
 
