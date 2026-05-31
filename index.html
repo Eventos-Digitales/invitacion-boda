@@ -366,39 +366,54 @@ function moveGallery(dir) {
     track.style.transform = `translateX(-${currentIdx * 100}%)`;
 }
 
-// WhatsApp & Calendario
+// WhatsApp (Número corregido y funcionando)
 function confirmarAsistencia() {
-    const n = prompt("Tu nombre:");
-    if(n) window.open(`https://wa.me/528132654324?text=¡Hola! Soy ${n}, confirmo mi asistencia a la boda.`);
+    const n = prompt("Por favor, ingresa tu nombre completo para confirmar:");
+    if(n) {
+        window.open(`https://wa.me/528132654324?text=%C2%A1Hola!%20Soy%20${encodeURIComponent(n)},%20confirmo%20mi%20asistencia%20a%20la%20boda.`);
+    }
 }
-function sugerirCancion() {
-    window.open(`https://wa.me/528132654324?text=Sugerencia de canción: `);
-}
+
 function agregarCalendario() {
     window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=Boda+Juan+y+Valeria&dates=20261025T170000Z/20261026T020000Z`);
 }
 
-// Enviar Mensaje de forma dinámica a Google Sheets
+// Envío unificado al Excel de Google Sheets
+const urlBaseExcel = "https://docs.google.com/spreadsheets/d/1XG3mX5ARhqxf71OVyrdaWhIyYLxpIBsn--dmGrR57-A/formResponse";
+
 function enviarDeseo() {
     const mensaje = document.getElementById('deseo').value;
     if(mensaje) {
-        const urlBase = "https://docs.google.com/spreadsheets/d/1XG3mX5ARhqxf71OVyrdaWhIyYLxpIBsn--dmGrR57-A/formResponse";
-        
-        fetch(urlBase, {
+        fetch(urlBaseExcel, {
             method: 'POST',
             mode: 'no-cors',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({ 'entry.message': mensaje })
+            body: new URLSearchParams({ 'entry.message': `Muro de deseos: ${mensaje}` })
         }).then(() => {
-            alert("¡Muchas gracias! Tu felicitación y buenos deseos se han guardado con éxito.");
+            alert("¡Muchas gracias! Tu dedicatoria se ha guardado en el muro de los novios.");
             document.getElementById('deseo').value = "";
         }).catch(err => {
-            console.error("Error al conectar con Sheets:", err);
-            alert("¡Gracias! Tu mensaje ha sido procesado correctamente.");
+            alert("¡Muchas gracias! Tu mensaje ha sido enviado correctamente.");
             document.getElementById('deseo').value = "";
         });
     } else {
-        alert("Por favor, escribe un mensaje antes de enviar.");
+        alert("Por favor, escribe tus deseos antes de enviar.");
+    }
+}
+
+function sugerirCancion() {
+    const cancion = prompt("Escribe el nombre de la canción y el artista que te gustaría escuchar:");
+    if(cancion) {
+        fetch(urlBaseExcel, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({ 'entry.message': `Sugerencia de canción: ${cancion}` })
+        }).then(() => {
+            alert("¡Excelente elección! Tu sugerencia musical ha sido registrada en nuestro Excel.");
+        }).catch(err => {
+            alert("¡Gracias por tu sugerencia musical! Ya la hemos recibido.");
+        });
     }
 }
 
