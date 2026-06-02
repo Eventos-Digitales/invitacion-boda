@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boda Juan & Valeria</title>
+    <title>La Unión Eterna de Juan & Valeria</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=1,700;1,900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=1,700;1,900&family=Montserrat:wght=300;400;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -13,6 +13,7 @@
             --dorado-oscuro: #967d5e;
             --texto: #3a2f25;
             --blanco-trans: rgba(255, 255, 255, 0.9);
+            --gris-claro: #f4f1ea;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -37,7 +38,7 @@
             transform: translateY(0);
         }
 
-        /* --- EFECTO SOBRE --- */
+        /* --- PANTALLA DE INICIO (SOBRE) --- */
         #sobre-capa {
             position: fixed;
             inset: 0;
@@ -48,12 +49,12 @@
             align-items: center;
             transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
         }
-        .sobre-contenido { text-align: center; cursor: pointer; padding: 20px; }
-        .sobre-contenido img { width: 100px; margin-bottom: 20px; animation: heartbeat 2.5s infinite; }
+        .sobre-contenido { text-align: center; padding: 30px; max-width: 450px; width: 90%; }
+        .sobre-contenido img { width: 90px; margin-bottom: 15px; animation: heartbeat 2.5s infinite; }
         
         @keyframes heartbeat {
             0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.08); }
             100% { transform: scale(1); }
         }
 
@@ -75,7 +76,7 @@
             align-items: center;
         }
 
-        /* --- PORTADA ADAPTADA --- */
+        /* --- PORTADA --- */
         .portada {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
@@ -88,12 +89,13 @@
         .nombres { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 6vw, 3rem); font-style: italic; }
         .titulo { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 2.8rem); font-style: italic; margin-bottom: 20px; color: var(--dorado-oscuro); }
 
-        /* --- TARJETAS FLEXIBLES --- */
+        /* --- TARJETAS Y UBICACIONES --- */
         .grid-lugares {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
             margin-top: 30px;
+            width: 100%;
         }
 
         .card { 
@@ -104,15 +106,47 @@
             backdrop-filter: blur(5px);
         }
 
+        /* --- ENLACES CÓMO LLEGAR --- */
+        .map-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .btn-mapa {
+            padding: 10px 16px;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            border: 1px solid var(--dorado);
+            background: white;
+            color: var(--texto);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .btn-mapa:hover {
+            background: var(--dorado);
+            color: white;
+        }
+
         /* --- DRESS CODE --- */
         .dress-icons { font-size: 3.5rem; margin: 20px 0; display: flex; justify-content: center; gap: 30px; }
         .paleta { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
         .color-circle { width: 40px; height: 40px; border-radius: 50%; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
-        /* --- GALERÍA --- */
+        /* --- GALERÍA - AJUSTADA PARA FOTOS CUADRADAS --- */
         .gallery-container { overflow: hidden; border-radius: 15px; width: 100%; max-width: 600px; margin: 0 auto; }
         .gallery-track { display: flex; transition: transform 0.6s ease-in-out; }
-        .gallery-track img { width: 100%; flex-shrink: 0; object-fit: cover; height: 400px; }
+        .gallery-track img { 
+            width: 100%; 
+            flex-shrink: 0; 
+            object-fit: cover; 
+            aspect-ratio: 1 / 1;
+        }
 
         /* --- TIMELINE --- */
         .timeline { margin: 40px 0; position: relative; padding: 20px 0; }
@@ -125,6 +159,20 @@
         #contador { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
         .count-item { background: white; padding: 15px; border-radius: 12px; min-width: 75px; flex: 1; max-width: 100px; border-bottom: 3px solid var(--dorado); }
         .count-num { display: block; font-size: clamp(1.2rem, 4vw, 1.8rem); font-weight: 600; color: var(--dorado-oscuro); }
+
+        /* --- PREGUNTAS FRECUENTES (FAQ ACORDEÓN) --- */
+        .faq-wrapper { max-width: 650px; margin: 30px auto 0 auto; text-align: left; }
+        .faq-item { background: white; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); overflow: hidden; }
+        .faq-question { padding: 18px 20px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+        .faq-question::after { content: '➔'; font-size: 0.8rem; transform: rotate(90deg); transition: transform 0.3s; }
+        .faq-item.active .faq-question::after { transform: rotate(-90deg); }
+        .faq-answer { max-height: 0; overflow: hidden; padding: 0 20px; background: #faf9f6; transition: max-height 0.3s ease, padding 0.3s ease; font-size: 0.95rem; color: #666; }
+        .faq-item.active .faq-answer { max-height: 200px; padding: 15px 20px; }
+
+        /* --- ELEMENTOS DE ENTRADA / PASES --- */
+        .input-group { margin: 15px 0; text-align: left; }
+        .input-group label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 5px; }
+        .input-field { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc; font-family: inherit; font-size: 1rem; }
 
         /* --- BOTONES --- */
         .boton { 
@@ -147,10 +195,10 @@
         }
 
         /* --- MAPAS --- */
-        iframe { width: 100%; height: 200px; border-radius: 12px; margin-top: 15px; border: 0; }
+        iframe { width: 100%; height: 230px; border-radius: 12px; margin-top: 15px; border: 0; }
 
         /* --- FONDOS --- */
-        .bg-rosas { background: url("https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1920&q=80") center fixed; background-size: cover; }
+        .bg-rosas { background: url("https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1920&—80") center fixed; background-size: cover; }
         .overlay { position: absolute; inset: 0; background: rgba(255,255,255,0.4); z-index: 1; }
 
         /* --- AJUSTES MÓVIL --- */
@@ -165,10 +213,11 @@
 
 <body>
 
-<div id="sobre-capa" onclick="abrirInvitacion()">
+<div id="sobre-capa">
     <div class="sobre-contenido">
-        <img src="https://cdn-icons-png.flaticon.com/512/3063/3063990.png" alt="Sobre">
-        <p class="titulo" style="font-size: 1.4rem;">Toca para abrir tu invitación</p>
+        <img src="https://cdn-icons-png.flaticon.com/512/3063/3063990.png" alt="Sobre de Invitación">
+        <p class="titulo" style="font-size: 1.4rem; margin-bottom: 25px;">Un mensaje sellado con amor eterno...</p>
+        <button class="boton" style="width: 100%; font-size: 1.1rem;" onclick="abrirInvitacion()">Desvelar Nuestra Historia</button>
     </div>
 </div>
 
@@ -180,44 +229,49 @@
 <section class="portada">
     <div class="content-wrap">
         <div class="iniciales">J & V</div>
-        <div class="nombres">Juan Hernández & Valeria López</div>
+        <div class="nombres">Nuestra Eternidad Comienza Hoy</div>
+        <p style="font-size: 1.2rem; font-style: italic; font-weight: 300; margin-top: 10px;">Juan & Valeria</p>
         <br>
-        <button class="boton" onclick="agregarCalendario()">📅 Agendar Fecha</button>
+        <button class="boton" onclick="agregarCalendario()">📅 Reservar este Día en tu Corazón</button>
     </div>
 </section>
 
 <section class="reveal">
     <div class="content-wrap card">
-        <p>Con la bendición de nuestros padres:</p>
+        <p style="font-style: italic; font-size: 1.1rem; color: var(--dorado-oscuro); font-weight: 600;">
+            "Guiados por el amor más puro, sostenidos por su ejemplo incondicional y cobijados bajo la bendición eterna de nuestros amados padres:"
+        </p>
+        <br><br>
+        <div class="titulo" style="font-size: 1.5rem;">Padres de la Adorable Novia</div>
+        <p style="font-weight: 600; letter-spacing: 1px;">María López & Carlos Hernández</p>
         <br>
-        <div class="titulo" style="font-size: 1.5rem;">Padres de la Novia</div>
-        <p>María López & Carlos Hernández</p>
-        <br>
-        <div class="titulo" style="font-size: 1.5rem;">Padres del Novio</div>
-        <p>Laura Martínez & Roberto Gómez</p>
+        <div class="titulo" style="font-size: 1.5rem;">Padres del Devoto Novio</div>
+        <p style="font-weight: 600; letter-spacing: 1px;">Laura Martínez & Roberto Gómez</p>
     </div>
 </section>
 
 <section class="bg-rosas reveal">
     <div class="overlay"></div>
     <div class="content-wrap card">
-        <div class="titulo">Nuestra Historia</div>
+        <div class="titulo">Nuestra Sagrada Travesía</div>
+        <p style="font-style: italic; max-width: 700px; margin: 0 auto 20px auto;">Cada segundo a tu lado ha sido un capítulo escrito por el destino. Así se entrelazaron nuestras almas rumbo al altar:</p>
         <div class="timeline">
-            <div class="timeline-item"><h4>2020</h4><p>El día que nos conocimos</p></div>
-            <div class="timeline-item"><h4>2022</h4><p>Nuestro primer viaje</p></div>
-            <div class="timeline-item"><h4>2024</h4><p>¡Dijo que sí!</p></div>
+            <div class="timeline-item"><h4>El Primer Destello (2020)</h4><p>El día que el universo cruzó nuestras miradas y la vida cambió para siempre.</p></div>
+            <div class="timeline-item"><h4>Cómplices del Mundo (2022)</h4><p>Nuestra primera gran aventura juntos, donde supimos que éramos un solo latido.</p></div>
+            <div class="timeline-item"><h4>La Promesa Perpetua (2024)</h4><p>Bajo el firmamento, con el corazón en la mano... ¡Ella pronunció el sí más tierno!</p></div>
         </div>
     </div>
 </section>
 
 <section class="reveal">
     <div class="content-wrap">
-        <div class="titulo">25 de Octubre, 2026</div>
+        <div class="titulo">El Instante Anhelado</div>
+        <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">25 de Octubre, 2026 — Cada latido nos acerca al momento en que seremos uno solo ante el altar.</p>
         <div id="contador">
             <div class="count-item"><span id="days" class="count-num">0</span> Días</div>
-            <div class="count-item"><span id="hours" class="count-num">0</span> Hrs</div>
-            <div class="count-item"><span id="mins" class="count-num">0</span> Min</div>
-            <div class="count-item"><span id="secs" class="count-num">0</span> Seg</div>
+            <div class="count-item"><span id="hours" class="count-num">0</span> Horas</div>
+            <div class="count-item"><span id="mins" class="count-num">0</span> Minutos</div>
+            <div class="count-item"><span id="secs" class="count-num">0</span> Segundos</div>
         </div>
     </div>
 </section>
@@ -225,16 +279,30 @@
 <section class="bg-rosas reveal">
     <div class="overlay"></div>
     <div class="content-wrap">
+        <div class="titulo">Los Escenarios de Nuestro Amor</div>
+        <p style="max-width: 600px; margin: 0 auto 15px auto; font-style: italic;">Tu presencia es el regalo más grande. Acompáñanos a escribir las páginas de este día tan sagrado:</p>
+        
         <div class="grid-lugares">
             <div class="card">
-                <div class="titulo" style="font-size: 1.6rem;">Ceremonia</div>
-                <p><strong>Parroquia San José</strong><br>5:00 PM</p>
-                <iframe src="https://maps.google.com/maps?q=Parroquia%20San%20Jos%C3%A9&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+                <div class="titulo" style="font-size: 1.5rem;">El Voto Sagrado</div>
+                <p><strong>Parroquia San José</strong><br>Acompáñanos a consagrar nuestro amor ante el altar.<br>⏱ Con cita a las 5:00 PM</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3591.7347901016625!2d-100.1912445!3d25.779313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662eba10c7bf30b%3A0xc39f201083161c94!2sParroquia%20San%20Jos%C3%A9%20(Apodaca)!5e0!3m2!1ses-419!2smx!4v1710000000000!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy"></iframe>
+                <div class="map-buttons">
+                    <a class="btn-mapa" href="https://maps.app.goo.gl/9ZpZ36Y8B3wzS8vM7" target="_blank">🗺️ Trazar Ruta (Maps)</a>
+                    <a class="btn-mapa" href="https://waze.com/ul?q=Parroquia+San+Jose+Apodaca" target="_blank">🚗 Iniciar Waze</a>
+                    <a class="btn-mapa" href="https://m.uber.com/ul/?action=setPickup&dropoff[nickname]=Parroquia%20San%20Jose%20Apodaca" target="_blank">📱 Solicitar Uber</a>
+                </div>
             </div>
+            
             <div class="card">
-                <div class="titulo" style="font-size: 1.6rem;">Recepción</div>
-                <p><strong>Salón Jardín Real</strong><br>7:30 PM</p>
-                <iframe src="https://maps.google.com/maps?q=Sal%C3%B3n%20Jard%C3%ADn%20Real&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+                <div class="titulo" style="font-size: 1.5rem;">La Gran Celebración</div>
+                <p><strong>Salón Jardín Real</strong><br>Brindemos, bailemos y celebremos la magia de estar juntos.<br>⏱ Recepción a partir de las 7:30 PM</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.213233212879!2d-100.2032412!3d25.7645121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662eba5431ab45d%3A0x24151bc2150bf42c!2sSalon%20Jardin%20Real!5e0!3m2!1ses-419!2smx!4v1710000000001!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy"></iframe>
+                <div class="map-buttons">
+                    <a class="btn-mapa" href="https://maps.app.goo.gl/YcWk48F2z3zQ8vZ7A" target="_blank">🗺️ Trazar Ruta (Maps)</a>
+                    <a class="btn-mapa" href="https://waze.com/ul?q=Salon+Jardin+Real+Apodaca" target="_blank">🚗 Iniciar Waze</a>
+                    <a class="btn-mapa" href="https://m.uber.com/ul/?action=setPickup&dropoff[nickname]=Salon%20Jardin%20Real" target="_blank">📱 Solicitar Uber</a>
+                </div>
             </div>
         </div>
     </div>
@@ -242,61 +310,108 @@
 
 <section class="reveal">
     <div class="content-wrap">
-        <div class="titulo">Nuestros Momentos</div>
+        <div class="titulo">Nuestros Instantes Memorables</div>
+        <p style="font-style: italic; margin-bottom: 25px;">Retazos de una vida rebosante de risas, miradas cómplices y un amor inquebrantable.</p>
         <div class="gallery-container">
             <div class="gallery-track" id="track">
-                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80">
-                <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&w=800&q=80">
-                <img src="https://images.unsplash.com/photo-1522673607200-1648832cee98?auto=format&fit=crop&w=800&q=80">
+                <img src="https://traveler.marriott.com/es/wp-content/uploads/sites/2/2024/02/GettyImages-929904308-scaled.jpg">
+                <img src="https://media.istockphoto.com/id/2090025382/es/foto/el-hombre-sostiene-suavemente-la-mano-de-la-novia-con-un-hermoso-anillo-de-bodas-dorado-imagen.jpg?s=612x612&w=0&k=20&c=uaN4MJU5UHURQ67R_pUkjA5D2WOIGtg5511XRfGEyng=">
+                <img src="https://img.magnific.com/foto-gratis/novio-que-pone-anillo-dedo-novia_1157-338.jpg">
             </div>
         </div>
         <br>
-        <button class="boton" onclick="moveGallery(-1)">❮</button>
-        <button class="boton" onclick="moveGallery(1)">❯</button>
+        <button class="boton" onclick="moveGallery(-1)">❮ Anterior</button>
+        <button class="boton" onclick="moveGallery(1)">Siguiente ❯</button>
     </div>
 </section>
 
 <section class="bg-rosas reveal">
     <div class="overlay"></div>
     <div class="content-wrap card">
-        <div class="titulo">Dress Code</div>
-        <p><strong>FORMAL</strong></p>
+        <div class="titulo">Código de Etiqueta</div>
+        <p style="font-size: 1.1rem; letter-spacing: 2px; font-weight: 600; color: var(--dorado-oscuro);">FORMAL RIGUROSO</p>
+        <p style="font-style: italic; margin-top: 10px;">Queremos verlos brillar en nuestra noche más especial. Vístanse con su máxima elegancia y distinción.</p>
         <div class="dress-icons">
             <span>👔</span>
             <span>👗</span>
         </div>
-        <p>Sugerencia de colores:</p>
+        <p style="font-weight: 600;">Inspiración para tu atuendo:</p>
         <div class="paleta">
             <div class="color-circle" style="background: #2c3e50;"></div>
             <div class="color-circle" style="background: #95a5a6;"></div>
             <div class="color-circle" style="background: #d4af37;"></div>
         </div>
-        <p style="color: #a00; font-weight: 600;">* Favor de evitar el color blanco</p>
-        <br>
-        <button class="boton" onclick="sugerirCancion()">🎵 Sugerir Canción</button>
+        <p style="color: #b30000; font-weight: 600; font-size: 0.95rem; font-style: italic;">
+            * Con profundo cariño, les pedimos reservar el color blanco exclusivamente para la radiante novia.
+        </p>
+        <br><br>
+        <div class="titulo" style="font-size: 1.4rem; margin-bottom: 5px;">¿Qué melodía encenderá tu alma en la pista?</div>
+        <p style="font-style: italic; margin-bottom: 15px;">Ayúdanos a armar la banda sonora de una noche inolvidable:</p>
+        <button class="boton" onclick="sugerirCancion()">🎵 Obsequiar una Sugerencia Musical</button>
     </div>
 </section>
 
 <section class="reveal">
     <div class="content-wrap card">
-        <div class="titulo">Muro de Deseos</div>
-        <p class="texto" style="margin-bottom: 15px;">Déjanos tu nombre seguido de tu dedicatoria:</p>
-        <textarea id="deseo" rows="4" style="width:100%; padding:15px; border-radius:10px; border:1px solid #ccc; font-family:inherit;" placeholder="Ej: Familia Gómez - ¡Muchas felicidades en esta nueva etapa!..."></textarea>
-        <button class="boton" onclick="enviarDeseo()">Enviar Mensaje</button>
+        <div class="titulo">Muro de Deseos y Bendiciones</div>
+        <p style="margin-bottom: 20px; font-style: italic;">Plasma aquí las palabras que brotan de tu corazón. Tus buenos deseos serán el faro de nuestro nuevo hogar:</p>
+        <textarea id="deseo" rows="4" style="width:100%; padding:15px; border-radius:10px; border:1px solid #ccc; font-family:inherit; font-size: 1rem;" placeholder="Escribe aquí tu hermoso mensaje de felicitación para los novios..."></textarea>
+        <button class="boton" onclick="enviarDeseo()">Inmortalizar mi Mensaje</button>
+    </div>
+</section>
+
+<section class="reveal">
+    <div class="content-wrap card">
+        <div class="titulo">Detalles Importantes para tu Comodidad</div>
+        <p style="font-style: italic; margin-bottom: 20px;">Queremos que disfrutes cada instante sin una sola preocupación. Aquí respondemos con amor a tus dudas:</p>
+        
+        <div class="faq-wrapper">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">¿Es un evento apto para toda la familia?</div>
+                <div class="faq-answer">Para brindarles una velada mágica, de descanso y fiesta libre de preocupaciones para todos, hemos diseñado una celebración exclusiva para adultos. ¡Agradecemos inmensamente su comprensión y apoyo!</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">¿Dónde podré resguardar mi vehículo?</div>
+                <div class="faq-answer">¡Despreocúpate! El prestigioso Salón Jardín Real pone a tu entera disposición un estacionamiento privado, totalmente vigilado y complementario para garantizar tu absoluta paz.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">¿Cuáles son las pautas de vestimenta?</div>
+                <div class="faq-answer">La etiqueta requerida es Formal. Los caballeros lucirán impecables en trajes completos oscuros y las damas deslumbrarán en vestidos largos o de cóctel refinado (cualquier tono es bienvenido, exceptuando la pureza del blanco).</div>
+            </div>
+        </div>
     </div>
 </section>
 
 <section class="bg-rosas reveal">
     <div class="overlay"></div>
-    <div class="content-wrap">
-        <div class="titulo">¡Te esperamos!</div>
-        <p class="texto">
-            Nuestra historia no estaría completa sin tu presencia. 
-            Gracias por ser parte de nuestra vida y por celebrar este gran paso con nosotros.
+    <div class="content-wrap card" style="max-width: 650px;">
+        <div class="titulo">El Honor de tu Compañía</div>
+        
+        <p style="color: var(--dorado-oscuro); font-weight: 600; font-style: italic; margin-bottom: 25px; padding: 0 15px; font-size: 1.1rem; line-height: 1.6;">
+            "Nuestra historia no estaría completa sin tu presencia. Gracias por ser parte de nuestra vida y por celebrar este gran paso con nosotros."
         </p>
-        <div class="nombres" style="margin-top: 20px; color: var(--dorado);">Juan & Valeria</div>
-        <br><br>
-        <button class="boton" style="font-size: 1.2rem;" onclick="confirmarAsistencia()">CONFIRMAR ASISTENCIA</button>
+
+        <p style="margin-bottom: 20px; font-style: italic;">Por favor, confírmanos tu valiosa asistencia indicando tu nombre y el número de corazones que nos acompañarán:</p>
+        
+        <div class="input-group">
+            <label for="invitado-nombre">Nombre de la Distinguida Familia o Invitado:</label>
+            <input type="text" id="invitado-nombre" class="input-field" placeholder="Ej: Familia Gómez Martínez">
+        </div>
+
+        <div class="input-group">
+            <label for="invitado-pases">Asientos de Honor a Reservar:</label>
+            <select id="invitado-pases" class="input-field">
+                <option value="1">1 Asiento</option>
+                <option value="2" selected>2 Asientos</option>
+                <option value="3">3 Asientos</option>
+                <option value="4">4 Asientos</option>
+                <option value="5">5 Asientos</option>
+            </select>
+        </div>
+
+        <br>
+        <button class="boton" style="font-size: 1.1rem; width: 100%; justify-content: center;" onclick="confirmarAsistencia()">✓ ENVIAR CONFIRMACIÓN CON AMOR POR WHATSAPP</button>
+        <div class="nombres" style="margin-top: 35px; color: var(--dorado); font-size: 2.2rem; font-family: 'Playfair Display', serif;">Juan & Valeria</div>
     </div>
 </section>
 
@@ -308,7 +423,10 @@ let fadeInterval;
 function abrirInvitacion() {
     document.getElementById('sobre-capa').style.transform = 'translateY(-100%)';
     setTimeout(() => { document.getElementById('sobre-capa').style.display = 'none'; }, 1200);
-    if(!isPlaying) toggleMusic();
+    
+    if(!isPlaying) {
+        toggleMusic();
+    }
 }
 
 function toggleMusic(){
@@ -366,19 +484,27 @@ function moveGallery(dir) {
     track.style.transform = `translateX(-${currentIdx * 100}%)`;
 }
 
-// WhatsApp (Número corregido y funcionando)
+function toggleFaq(elemento) {
+    const item = elemento.parentElement;
+    item.classList.toggle('active');
+}
+
 function confirmarAsistencia() {
-    const n = prompt("Por favor, ingresa tu nombre completo para confirmar:");
-    if(n) {
-        window.open(`https://wa.me/528132654324?text=%C2%A1Hola!%20Soy%20${encodeURIComponent(n)},%20confirmo%20mi%20asistencia%20a%20la%20boda.`);
+    const nombre = document.getElementById('invitado-nombre').value.trim();
+    const pases = document.getElementById('invitado-pases').value;
+    
+    if(nombre) {
+        const textoMsg = `¡Hola! Con inmensa alegría, la ${encodeURIComponent(nombre)} confirma su dichosa presencia para ocupar ${pases} ${pases == 1 ? 'asiento de honor' : 'asientos de honor'} en este día inolvidable. ¡Nos vemos pronto!`;
+        window.open(`https://wa.me/528132654324?text=${textoMsg}`);
+    } else {
+        alert("Por favor, comparte con nosotros tu nombre para añadirte a la lista de honor.");
     }
 }
 
 function agregarCalendario() {
-    window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=Boda+Juan+y+Valeria&dates=20261025T170000Z/20261026T020000Z`);
+    window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=La+Unión+Eterna+de+Juan+y+Valeria&dates=20261025T170000Z/20261026T020000Z`);
 }
 
-// Envío unificado al Excel de Google Sheets
 const urlBaseExcel = "https://docs.google.com/spreadsheets/d/1XG3mX5ARhqxf71OVyrdaWhIyYLxpIBsn--dmGrR57-A/formResponse";
 
 function enviarDeseo() {
@@ -388,36 +514,35 @@ function enviarDeseo() {
             method: 'POST',
             mode: 'no-cors',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({ 'entry.message': `Muro de deseos: ${mensaje}` })
+            body: new URLSearchParams({ 'entry.message': `Muro de deseos poéticos: ${mensaje}` })
         }).then(() => {
-            alert("¡Muchas gracias! Tu dedicatoria se ha guardado en el muro de los novios.");
+            alert("¡Tu bendición ha sido grabada eternamente en el corazón de los novios!");
             document.getElementById('deseo').value = "";
         }).catch(err => {
-            alert("¡Muchas gracias! Tu mensaje ha sido enviado correctamente.");
+            alert("¡Recibido con profundo agradecimiento! Tu mensaje se ha guardado.");
             document.getElementById('deseo').value = "";
         });
     } else {
-        alert("Por favor, escribe tus deseos antes de enviar.");
+        alert("Por favor, escribe tus pensamientos antes de enviarlos.");
     }
 }
 
 function sugerirCancion() {
-    const cancion = prompt("Escribe el nombre de la canción y el artista que te gustaría escuchar:");
+    const cancion = prompt("Escribe con amor el título y artista de esa joya musical que nos pondrá a bailar:");
     if(cancion) {
         fetch(urlBaseExcel, {
             method: 'POST',
             mode: 'no-cors',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({ 'entry.message': `Sugerencia de canción: ${cancion}` })
+            body: new URLSearchParams({ 'entry.message': `Melodía sugerida: ${cancion}` })
         }).then(() => {
-            alert("¡Excelente elección! Tu sugerencia musical ha sido registrada en nuestro Excel.");
+            alert("¡Maravillosa elección! Tu melodía ha sido agregada a la lista de la noche.");
         }).catch(err => {
-            alert("¡Gracias por tu sugerencia musical! Ya la hemos recibido.");
+            alert("¡Sugerencia musical recibida con éxito! Gracias por ser parte de la fiesta.");
         });
     }
 }
 
-// Detector de desplazamiento para activar animaciones
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
