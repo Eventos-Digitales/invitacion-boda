@@ -18,29 +18,33 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
+        /* --- CAMBIO TOTAL DE TAMAÑO PARA CELULAR --- */
         body {
             font-family: 'Montserrat', sans-serif;
             color: var(--texto);
             background-color: #fcfbf9;
-            line-height: 1.35; 
-            font-size: 12px !important; /* Forzamos tamaño compacto en celular */
+            line-height: 1.3; 
+            font-size: 9px !important; /* Letra general ultra pequeña */
             overflow-x: hidden;
             -webkit-text-size-adjust: 100%;
         }
 
-        /* --- ANIMACIONES DE DESPLAZAMIENTO --- */
+        /* Títulos forzados a tamaño miniatura en móvil */
+        .iniciales { font-family: 'Playfair Display', serif; font-size: 26px !important; font-style: italic; line-height: 1; }
+        .nombres { font-family: 'Playfair Display', serif; font-size: 11px !important; font-style: italic; }
+        .titulo { font-family: 'Playfair Display', serif; font-size: 12px !important; font-style: italic; margin-bottom: 6px; color: var(--dorado-oscuro); }
+        
+        p, span, label, select, input, textarea { font-size: 9px !important; }
+
+        /* --- ANIMACIONES --- */
         .reveal {
             opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- PANTALLA DE INICIO (SOBRE) --- */
+        /* --- PANTALLA DE INICIO --- */
         #sobre-capa {
             position: fixed;
             inset: 0;
@@ -49,36 +53,28 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
         }
-        .sobre-contenido { text-align: center; padding: 15px; max-width: 320px; width: 85%; }
-        .sobre-contenido img { width: 55px; margin-bottom: 10px; animation: heartbeat 2.5s infinite; }
-        
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
-        }
+        .sobre-contenido { text-align: center; padding: 10px; max-width: 280px; width: 85%; }
+        .sobre-contenido img { width: 45px; margin-bottom: 8px; }
 
-        /* --- RESPONSIVIDAD Y CONTENEDORES --- */
+        /* --- CONTENEDORES --- */
         .content-wrap { 
             position: relative; 
             z-index: 2; 
-            width: 92%; 
-            max-width: 700px; 
+            width: 94%; 
+            max-width: 650px; 
             margin: 0 auto;
             text-align: center; 
         }
 
         section {
             position: relative;
-            padding: 30px 0; 
-            min-height: auto;
+            padding: 20px 0; 
             display: flex;
             align-items: center;
         }
 
-        /* --- PORTADA --- */
         .portada {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), 
@@ -87,41 +83,23 @@
             color: white;
         }
 
-        /* Forzado estricto de tamaños máximos pequeños para móvil */
-        .iniciales { font-family: 'Playfair Display', serif; font-size: 38px !important; font-style: italic; line-height: 1; }
-        .nombres { font-family: 'Playfair Display', serif; font-size: 15px !important; font-style: italic; }
-        .titulo { font-family: 'Playfair Display', serif; font-size: 16px !important; font-style: italic; margin-bottom: 8px; color: var(--dorado-oscuro); }
-
-        /* --- TARJETAS Y UBICACIONES --- */
-        .grid-lugares {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            margin-top: 12px;
-            width: 100%;
-        }
-
         .card { 
             background: var(--blanco-trans); 
-            padding: 18px 12px; 
-            border-radius: 10px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            padding: 12px 10px; 
+            border-radius: 8px; 
+            box-shadow: 0 3px 10px rgba(0,0,0,0.02);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
         }
 
-        /* --- ENLACES CÓMO LLEGAR --- */
-        .map-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            margin-top: 8px;
-            width: 100%;
-        }
+        /* --- COMPONENTES --- */
+        .grid-lugares { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px; width: 100%; }
+        
+        .map-buttons { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; width: 100%; }
         .btn-mapa {
-            padding: 8px 10px;
-            font-size: 11px !important; 
-            border-radius: 20px;
+            padding: 6px 8px;
+            font-size: 9px !important; 
+            border-radius: 15px;
             border: 1px solid var(--dorado);
             background: white;
             color: var(--texto);
@@ -129,106 +107,71 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 4px;
+            gap: 3px;
             font-weight: 600;
-            transition: 0.2s;
             width: 100%;
         }
-        .btn-mapa:hover {
-            background: var(--dorado);
-            color: white;
-        }
 
-        /* --- DRESS CODE --- */
-        .dress-icons { font-size: 1.8rem; margin: 8px 0; display: flex; justify-content: center; gap: 12px; }
-        .paleta { display: flex; justify-content: center; gap: 6px; margin: 8px 0; }
-        .color-circle { width: 26px; height: 26px; border-radius: 50%; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .dress-icons { font-size: 1.5rem; margin: 5px 0; display: flex; justify-content: center; gap: 10px; }
+        .paleta { display: flex; justify-content: center; gap: 5px; margin: 6px 0; }
+        .color-circle { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid white; }
 
-        /* --- GALERÍA --- */
-        .gallery-container { overflow: hidden; border-radius: 8px; width: 100%; max-width: 290px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .gallery-track { display: flex; transition: transform 0.5s ease-in-out; }
-        .gallery-track img { 
-            width: 100%; 
-            flex-shrink: 0; 
-            object-fit: cover; 
-            aspect-ratio: 1 / 1;
-        }
+        .gallery-container { overflow: hidden; border-radius: 6px; width: 100%; max-width: 250px; margin: 0 auto; }
+        .gallery-track { display: flex; transition: transform 0.4s ease-in-out; }
+        .gallery-track img { width: 100%; flex-shrink: 0; object-fit: cover; aspect-ratio: 1 / 1; }
 
-        /* --- TIMELINE --- */
-        .timeline { margin: 15px 0; position: relative; padding: 5px 0; }
-        .timeline::before { content: ''; position: absolute; left: 10px; width: 2px; height: 100%; background: var(--dorado); }
-        
-        .timeline-item { 
-            margin-bottom: 15px; 
-            position: relative; 
-            width: 100%; 
-            padding-left: 25px; 
-            text-align: left !important; 
-        }
-        .timeline-item h4 { font-size: 13px !important; color: var(--dorado-oscuro); font-weight: 600; }
-        .timeline-item p { font-size: 11px !important; }
+        .timeline { margin: 10px 0; position: relative; }
+        .timeline::before { content: ''; position: absolute; left: 8px; width: 1.5px; height: 100%; background: var(--dorado); }
+        .timeline-item { margin-bottom: 12px; position: relative; width: 100%; padding-left: 20px; text-align: left !important; }
+        .timeline-item h4 { font-size: 10px !important; color: var(--dorado-oscuro); font-weight: 600; }
 
-        /* --- CONTADOR --- */
-        #contador { display: flex; justify-content: center; gap: 4px; margin-top: 10px; width: 100%; }
-        .count-item { background: white; padding: 5px 2px; border-radius: 6px; flex: 1; max-width: 55px; border-bottom: 2px solid var(--dorado); box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .count-num { display: block; font-size: 14px !important; font-weight: 600; color: var(--dorado-oscuro); }
-        .count-item span { font-size: 9px !important; display: block; margin-top: 1px; }
+        #contador { display: flex; justify-content: center; gap: 3px; margin-top: 8px; width: 100%; }
+        .count-item { background: white; padding: 4px 2px; border-radius: 4px; flex: 1; max-width: 45px; border-bottom: 1.5px solid var(--dorado); }
+        .count-num { display: block; font-size: 11px !important; font-weight: 600; color: var(--dorado-oscuro); }
 
-        /* --- FAQ ACORDEÓN --- */
-        .faq-wrapper { max-width: 100%; margin: 10px auto 0 auto; text-align: left; }
-        .faq-item { background: white; border-radius: 6px; margin-bottom: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.01); overflow: hidden; }
-        .faq-question { padding: 8px 10px; font-weight: 600; font-size: 12px !important; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; gap: 6px; }
-        .faq-question::after { content: '➔'; font-size: 9px; transform: rotate(90deg); transition: transform 0.3s; flex-shrink: 0; }
-        .faq-item.active .faq-question::after { transform: rotate(-90deg); }
-        .faq-answer { max-height: 0; overflow: hidden; padding: 0 10px; background: #faf9f6; transition: max-height 0.3s ease, padding 0.3s ease; font-size: 11px !important; color: #555; line-height: 1.3; }
-        .faq-item.active .faq-answer { max-height: 250px; padding: 8px 10px; }
+        .faq-wrapper { max-width: 100%; margin: 8px auto 0 auto; text-align: left; }
+        .faq-item { background: white; border-radius: 4px; margin-bottom: 4px; overflow: hidden; border: 1px solid #eee; }
+        .faq-question { padding: 6px 8px; font-weight: 600; font-size: 9px !important; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-answer { max-height: 0; overflow: hidden; padding: 0 8px; background: #faf9f6; transition: max-height 0.3s ease; font-size: 9px !important; color: #555; }
+        .faq-item.active .faq-answer { max-height: 150px; padding: 6px 8px; }
 
-        /* --- COMPONENTES DE ENTRADA --- */
-        .input-group { margin: 8px 0; text-align: left; }
-        .input-group label { display: block; font-size: 11px !important; font-weight: 600; margin-bottom: 2px; }
-        .input-field { width: 100%; padding: 7px; border-radius: 50px; border: 1px solid #ccc; font-family: inherit; font-size: 12px !important; background: #fff; -webkit-appearance: none; }
+        .input-group { margin: 6px 0; text-align: left; }
+        .input-field { width: 100%; padding: 5px 10px; border-radius: 20px; border: 1px solid #ccc; font-family: inherit; background: #fff; -webkit-appearance: none; }
 
-        /* --- BOTONES --- */
         .boton { 
-            display: inline-flex; align-items: center; gap: 5px; 
-            padding: 9px 18px; border-radius: 50px; 
+            display: inline-flex; align-items: center; gap: 4px; 
+            padding: 7px 14px; border-radius: 20px; 
             background: var(--dorado); color: white; 
-            text-decoration: none; font-weight: 600; font-size: 12px !important;
-            transition: 0.3s; border: none; cursor: pointer;
-            margin: 4px 0; width: 100%; justify-content: center;
+            text-decoration: none; font-weight: 600; font-size: 9px !important;
+            border: none; cursor: pointer; margin: 3px 0; width: 100%; justify-content: center;
         }
-        .boton:hover { background: var(--dorado-oscuro); }
 
         #musicBtn { 
-            position: fixed; bottom: 12px; right: 12px; 
-            width: 34px; height: 34px; background: var(--dorado); 
+            position: fixed; bottom: 10px; right: 10px; 
+            width: 30px; height: 30px; background: var(--dorado); 
             border-radius: 50%; display: flex; align-items: center; 
-            justify-content: center; color: white; z-index: 999; 
-            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-            cursor: pointer; font-size: 11px !important;
+            justify-content: center; color: white; z-index: 999; font-size: 9px !important;
         }
 
-        /* --- MAPAS --- */
-        iframe { width: 100%; height: 140px; border-radius: 6px; margin-top: 6px; border: 0; }
-
-        /* --- FONDOS --- */
+        iframe { width: 100%; height: 120px; border-radius: 4px; margin-top: 5px; border: 0; }
         .bg-rosas { background: url("https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=60") center fixed; background-size: cover; }
         .overlay { position: absolute; inset: 0; background: rgba(255,255,255,0.45); z-index: 1; }
 
-        /* --- RESPONSIVIDAD PARA PANTALLAS GRANDES --- */
+        /* --- DISEÑO ESCRITORIO (SE QUEDA NORMAL) --- */
         @media (min-width: 600px) {
             body { font-size: 13px !important; }
-            .iniciales { font-size: 55px !important; }
-            .nombres { font-size: 20px !important; }
-            .titulo { font-size: 22px !important; }
-            .grid-lugares { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+            .iniciales { font-size: 50px !important; }
+            .nombres { font-size: 18px !important; }
+            .titulo { font-size: 20px !important; }
+            p, span, label, select, input, textarea, .btn-mapa, .boton { font-size: 13px !important; }
+            .grid-lugares { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
             .map-buttons { flex-direction: row; }
             .btn-mapa, .boton { width: auto; }
             .timeline::before { left: 50%; transform: translateX(-50%); }
-            .timeline-item { width: 50%; padding: 0 20px; }
-            .timeline-item:nth-child(odd) { left: 0; text-align: right !important; padding-right: 25px; padding-left: 0; }
-            .timeline-item:nth-child(even) { left: 50%; padding-left: 25px; }
-            section { padding: 45px 0; }
+            .timeline-item { width: 50%; padding: 0 15px; }
+            .timeline-item:nth-child(odd) { left: 0; text-align: right !important; padding-right: 20px; padding-left: 0; }
+            .timeline-item:nth-child(even) { left: 50%; padding-left: 20px; }
+            section { padding: 40px 0; }
         }
     </style>
 </head>
@@ -237,8 +180,8 @@
 
 <div id="sobre-capa">
     <div class="sobre-contenido">
-        <img src="https://cdn-icons-png.flaticon.com/512/3063/3063990.png" alt="Sobre de Invitación">
-        <p class="titulo" style="font-size: 14px !important; margin-bottom: 10px;">Un mensaje sellado con amor eterno...</p>
+        <img src="https://cdn-icons-png.flaticon.com/512/3063/3063990.png" alt="Sobre">
+        <p class="titulo" style="font-size: 11px !important; margin-bottom: 8px;">Un mensaje sellado con amor eterno...</p>
         <button class="boton" onclick="abrirInvitacion()">Desvelar Nuestra Historia</button>
     </div>
 </div>
@@ -252,7 +195,7 @@
     <div class="content-wrap">
         <div class="iniciales">J & V</div>
         <div class="nombres">Nuestra Eternidad Comienza Hoy</div>
-        <p style="font-size: 12px !important; font-style: italic; font-weight: 300; margin-top: 5px;">Juan & Valeria</p>
+        <p style="font-style: italic; font-weight: 300; margin-top: 4px;">Juan & Valeria</p>
         <br>
         <button class="boton" onclick="agregarCalendario()">📅 Reservar este Día</button>
     </div>
@@ -260,15 +203,15 @@
 
 <section class="reveal">
     <div class="content-wrap card">
-        <p style="font-style: italic; font-size: 12px !important; color: var(--dorado-oscuro); font-weight: 600;">
+        <p style="font-style: italic; color: var(--dorado-oscuro); font-weight: 600;">
             "Guiados por el amor más puro, sostenidos por su ejemplo incondicional y cobijados bajo la bendición eterna de nuestros amados padres:"
         </p>
         <br><br>
         <div class="titulo">Padres de la Novia</div>
-        <p style="font-weight: 600; font-size: 12px !important; letter-spacing: 0.5px;">María López & Carlos Hernández</p>
+        <p style="font-weight: 600; letter-spacing: 0.5px;">María López & Carlos Hernández</p>
         <br>
         <div class="titulo">Padres del Novio</div>
-        <p style="font-weight: 600; font-size: 12px !important; letter-spacing: 0.5px;">Laura Martínez & Roberto Gómez</p>
+        <p style="font-weight: 600; letter-spacing: 0.5px;">Laura Martínez & Roberto Gómez</p>
     </div>
 </section>
 
@@ -276,7 +219,7 @@
     <div class="overlay"></div>
     <div class="content-wrap card">
         <div class="titulo">Nuestra Sagrada Travesía</div>
-        <p style="font-style: italic; font-size: 11px !important; max-width: 600px; margin: 0 auto 10px auto;">Cada segundo a tu lado ha sido un capítulo escrito por el destino. Así se entrelazaron nuestras almas rumbo al altar:</p>
+        <p style="font-style: italic; max-width: 600px; margin: 0 auto 8px auto;">Cada segundo a tu lado ha sido un capítulo escrito por el destino. Así se entrelazaron nuestras almas rumbo al altar:</p>
         <div class="timeline">
             <div class="timeline-item"><h4>El Primer Destello (2020)</h4><p>El día que el universo cruzó nuestras miradas y la vida cambió para siempre.</p></div>
             <div class="timeline-item"><h4>Cómplices del Mundo (2022)</h4><p>Nuestra primera gran aventura juntos, donde supimos que éramos un solo latido.</p></div>
@@ -288,7 +231,7 @@
 <section class="reveal">
     <div class="content-wrap">
         <div class="titulo">El Instante Anhelado</div>
-        <p style="font-size: 12px !important; font-style: italic; margin-bottom: 8px;">25 de Octubre, 2026 — Cada latido nos acerca al momento en que seremos uno solo ante el altar.</p>
+        <p style="font-style: italic; margin-bottom: 6px;">25 de Octubre, 2026 — Cada latido nos acerca al momento en que seremos uno solo ante el altar.</p>
         <div id="contador">
             <div class="count-item"><span id="days" class="count-num">0</span> <span>Días</span></div>
             <div class="count-item"><span id="hours" class="count-num">0</span> <span>Horas</span></div>
@@ -302,28 +245,28 @@
     <div class="overlay"></div>
     <div class="content-wrap">
         <div class="titulo">Los Escenarios de Nuestro Amor</div>
-        <p style="max-width: 600px; margin: 0 auto 8px auto; font-style: italic; font-size: 11px !important;">Tu presencia es el regalo más grande. Acompáñanos a escribir las páginas de este día tan sagrado:</p>
+        <p style="max-width: 600px; margin: 0 auto 6px auto; font-style: italic;">Tu presencia es el regalo más grande. Acompáñanos a escribir las páginas de este día tan sagrado:</p>
         
         <div class="grid-lugares">
             <div class="card">
                 <div class="titulo">El Voto Sagrado</div>
-                <p style="font-size: 11px !important;"><strong>Parroquia San José</strong><br>Acompáñanos a consagrar nuestro amor ante el altar.<br>⏱ Con cita a las 5:00 PM</p>
+                <p><strong>Parroquia San José</strong><br>Acompáñanos a conservar nuestro amor ante el altar.<br>⏱ Con cita a las 5:00 PM</p>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3591.7347901016625!2d-100.1912445!3d25.779313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662eba10c7bf30b%3A0xc39f201083161c94!2sParroquia%20San%20Jos%C3%A9%20(Apodaca)!5e0!3m2!1ses-419!2smx!4v1710000000000!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy"></iframe>
                 <div class="map-buttons">
-                    <a class="btn-mapa" href="https://maps.app.goo.gl/9ZpZ36Y8B3wzS8vM7" target="_blank">🗺️ Trazar Ruta (Maps)</a>
-                    <a class="btn-mapa" href="https://waze.com/ul?q=Parroquia+San+Jose+Apodaca" target="_blank">🚗 Iniciar Waze</a>
-                    <a class="btn-mapa" href="https://m.uber.com/ul/?action=setPickup&dropoff[nickname]=Parroquia%20San%20Jose%20Apodaca" target="_blank">📱 Solicitar Uber</a>
+                    <a class="btn-mapa" href="https://maps.app.goo.gl/9ZpZ36Y8B3wzS8vM7" target="_blank">🗺️ Maps</a>
+                    <a class="btn-mapa" href="https://waze.com/ul?q=Parroquia+San+Jose+Apodaca" target="_blank">🚗 Waze</a>
+                    <a class="btn-mapa" href="https://m.uber.com/ul/?action=setPickup&dropoff[nickname]=Parroquia%20San%20Jose%20Apodaca" target="_blank">📱 Uber</a>
                 </div>
             </div>
             
             <div class="card">
                 <div class="titulo">La Gran Celebración</div>
-                <p style="font-size: 11px !important;"><strong>Salón Jardín Real</strong><br>Brindemos, bailemos y celebremos la magia de estar juntos.<br>⏱ Recepción a partir de las 7:30 PM</p>
+                <p><strong>Salón Jardín Real</strong><br>Brindemos, bailemos y celebremos la magia de estar juntos.<br>⏱ Recepción a partir de las 7:30 PM</p>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.213233212879!2d-100.2032412!3d25.7645121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662eba5431ab45d%3A0x24151bc2150bf42c!2sSalon%20Jardin%20Real!5e0!3m2!1ses-419!2smx!4v1710000000001!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy"></iframe>
                 <div class="map-buttons">
-                    <a class="btn-mapa" href="https://maps.app.goo.gl/YcWk48F2z3zQ8vZ7A" target="_blank">🗺️ Trazar Ruta (Maps)</a>
-                    <a class="btn-mapa" href="https://waze.com/ul?q=Salon+Jardin+Real+Apodaca" target="_blank">🚗 Iniciar Waze</a>
-                    <a class="btn-mapa" href="https://m.uber.com/ul/?action=setPickup&dropoff[nickname]=Salon%20Jardin%20Real" target="_blank">📱 Solicitar Uber</a>
+                    <a class="btn-mapa" href="https://maps.app.goo.gl/YcWk48F2z3zQ8vZ7A" target="_blank">🗺️ Maps</a>
+                    <a class="btn-mapa" href="https://waze.com/ul?q=Salon+Jardin+Real+Apodaca" target="_blank">🚗 Waze</a>
+                    <a class="btn-mapa" href="https://m.uber.com/ul/?action=setPickup&dropoff[nickname]=Salon%20Jardin%20Real" target="_blank">📱 Uber</a>
                 </div>
             </div>
         </div>
@@ -333,7 +276,7 @@
 <section class="reveal">
     <div class="content-wrap">
         <div class="titulo">Nuestros Instantes Memorables</div>
-        <p style="font-style: italic; font-size: 11px !important; margin-bottom: 10px;">Retazos de una vida rebosante de risas, miradas cómplices y un amor inquebrantable.</p>
+        <p style="font-style: italic; margin-bottom: 8px;">Retazos de una vida rebosante de risas, miradas cómplices y un amor inquebrantable.</p>
         <div class="gallery-container">
             <div class="gallery-track" id="track">
                 <img src="https://traveler.marriott.com/es/wp-content/uploads/sites/2/2024/02/GettyImages-929904308-scaled.jpg">
@@ -342,9 +285,9 @@
             </div>
         </div>
         <br>
-        <div style="display:flex; justify-content:center; gap:5px; max-width:290px; margin:0 auto;">
-            <button class="boton" onclick="moveGallery(-1)">❮ Anterior</button>
-            <button class="boton" onclick="moveGallery(1)">Siguiente ❯</button>
+        <div style="display:flex; justify-content:center; gap:4px; max-width:250px; margin:0 auto;">
+            <button class="boton" onclick="moveGallery(-1)">❮ Ant</button>
+            <button class="boton" onclick="moveGallery(1)">Sig ❯</button>
         </div>
     </div>
 </section>
@@ -353,33 +296,27 @@
     <div class="overlay"></div>
     <div class="content-wrap card">
         <div class="titulo">Código de Etiqueta</div>
-        <p style="font-size: 12px !important; letter-spacing: 1px; font-weight: 600; color: var(--dorado-oscuro);">FORMAL RIGUROSO</p>
-        <p style="font-style: italic; font-size: 11px !important; margin-top: 4px;">Queremos verlos brillar en nuestra noche más especial. Vístanse con su máxima elegancia y distinción.</p>
-        <div class="dress-icons">
-            <span>👔</span>
-            <span>👗</span>
-        </div>
-        <p style="font-weight: 600; font-size: 11px !important;">Inspiración para tu atuendo:</p>
+        <p style="letter-spacing: 1px; font-weight: 600; color: var(--dorado-oscuro);">FORMAL RIGUROSO</p>
+        <p style="font-style: italic; margin-top: 2px;">Queremos verlos brillar en nuestra noche más especial. Vístanse con su máxima elegancia y distinción.</p>
+        <div class="dress-icons"><span>👔</span><span>👗</span></div>
         <div class="paleta">
             <div class="color-circle" style="background: #2c3e50;"></div>
             <div class="color-circle" style="background: #95a5a6;"></div>
             <div class="color-circle" style="background: #d4af37;"></div>
         </div>
-        <p style="color: #b30000; font-weight: 600; font-size: 10px !important; font-style: italic; padding: 0 5px;">
+        <p style="color: #b30000; font-weight: 600; font-style: italic;">
             * Con profundo cariño, les pedimos reservar el color blanco exclusivamente para la radiante novia.
         </p>
-        <br><br>
+        <br>
         <div class="titulo">¿Qué melodía encenderá tu alma?</div>
-        <p style="font-style: italic; font-size: 11px !important; margin-bottom: 6px;">Ayúdanos a armar la banda sonora de una noche inolvidable:</p>
-        <button class="boton" onclick="sugerirCancion()">🎵 Sugerir una Canción</button>
+        <button class="boton" onclick="sugerirCancion()">🎵 Sugerir Canción</button>
     </div>
 </section>
 
 <section class="reveal">
     <div class="content-wrap card">
         <div class="titulo">Muro de Deseos</div>
-        <p style="margin-bottom: 8px; font-size: 11px !important; font-style: italic;">Plasma aquí las palabras que brotan de tu corazón. Tus buenos deseos serán el faro de nuestro nuevo hogar:</p>
-        <textarea id="deseo" rows="3" style="width:100%; padding:8px; border-radius:6px; border:1px solid #ccc; font-family:inherit; font-size: 11px !important; resize:none;" placeholder="Escribe tu mensaje aquí..."></textarea>
+        <textarea id="deseo" rows="2" style="width:100%; padding:6px; border-radius:4px; border:1px solid #ccc; font-family:inherit; resize:none;" placeholder="Escribe tu mensaje aquí..."></textarea>
         <button class="boton" onclick="enviarDeseo()">Inmortalizar mi Mensaje</button>
     </div>
 </section>
@@ -387,20 +324,14 @@
 <section class="reveal">
     <div class="content-wrap card">
         <div class="titulo">Detalles Importantes</div>
-        <p style="font-style: italic; font-size: 11px !important; margin-bottom: 8px;">Queremos que disfrutes cada instante sin una sola preocupación. Aquí respondemos con amor a tus dudas:</p>
-        
         <div class="faq-wrapper">
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">¿Es un evento apto para toda la familia?</div>
-                <div class="faq-answer">Para brindarles una velada mágica de fiesta libre de preocupaciones para todos, hemos diseñado una celebración exclusiva para adultos. ¡Agradecemos inmensamente su comprensión!</div>
+                <div class="faq-answer">Para brindarles una velada libre de preocupaciones, hemos diseñado una celebración exclusiva para adultos. ¡Gracias!</div>
             </div>
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">¿Dónde podré resguardar mi vehículo?</div>
-                <div class="faq-answer">¡Despreocúpate! El Salón Jardín Real pone a tu disposición un estacionamiento privado, vigilado y complementario para garantizar tu absoluta tranquilidad.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">¿Cuáles son las pautas de vestimenta?</div>
-                <div class="faq-answer">La etiqueta requerida es Formal. Los caballeros lucirán trajes completos oscuros y las damas vestidos largos o de cóctel refinado (cualquier tono exceptuando el color blanco).</div>
+                <div class="faq-answer">El Salón Jardín Real pone a tu disposición un estacionamiento privado y vigilado para tu absoluta tranquilidad.</div>
             </div>
         </div>
     </div>
@@ -408,18 +339,13 @@
 
 <section class="bg-rosas reveal">
     <div class="overlay"></div>
-    <div class="content-wrap card" style="max-width: 400px;">
+    <div class="content-wrap card" style="max-width: 350px;">
         <div class="titulo">El Honor de tu Compañía</div>
-        
-        <p style="color: var(--dorado-oscuro); font-weight: 600; font-style: italic; margin-bottom: 10px; font-size: 12px !important; line-height: 1.3;">
-            "Nuestra historia no estaría completa sin tu presencia. Gracias por ser parte de nuestra vida."
-        </p>
-
-        <p style="margin-bottom: 8px; font-size: 11px !important; font-style: italic;">Por favor, confírmanos tu valiosa asistencia indicando tu nombre y el número de asientos:</p>
+        <p style="margin-bottom: 6px; font-style: italic;">Por favor, confírmanos tu valiosa asistencia:</p>
         
         <div class="input-group">
-            <label for="invitado-nombre">Nombre de la Familia o Invitado:</label>
-            <input type="text" id="invitado-nombre" class="input-field" placeholder="Ej: Familia Gómez Martínez">
+            <label for="invitado-nombre">Nombre del Invitado:</label>
+            <input type="text" id="invitado-nombre" class="input-field" placeholder="Ej: Familia Gómez">
         </div>
 
         <div class="input-group">
@@ -429,13 +355,12 @@
                 <option value="2" selected>2 Asientos</option>
                 <option value="3">3 Asientos</option>
                 <option value="4">4 Asientos</option>
-                <option value="5">5 Asientos</option>
             </select>
         </div>
 
         <br>
-        <button class="boton" style="font-size: 12px !important;" onclick="confirmarAsistencia()">✓ CONFIRMAR POR WHATSAPP</button>
-        <div class="nombres" style="margin-top: 12px; color: var(--dorado); font-size: 20px !important; font-family: 'Playfair Display', serif;">Juan & Valeria</div>
+        <button class="boton" onclick="confirmarAsistencia()">✓ CONFIRMAR POR WHATSAPP</button>
+        <div class="nombres" style="margin-top: 8px; color: var(--dorado); font-size: 14px !important; font-family: 'Playfair Display', serif;">Juan & Valeria</div>
     </div>
 </section>
 
@@ -446,50 +371,33 @@ let fadeInterval;
 
 function abrirInvitacion() {
     document.getElementById('sobre-capa').style.transform = 'translateY(-100%)';
-    setTimeout(() => { document.getElementById('sobre-capa').style.display = 'none'; }, 1000);
-    
-    if(!isPlaying) {
-        toggleMusic();
-    }
+    setTimeout(() => { document.getElementById('sobre-capa').style.display = 'none'; }, 800);
+    if(!isPlaying) { toggleMusic(); }
 }
 
 function toggleMusic(){
     const btn = document.getElementById("musicBtn");
     clearInterval(fadeInterval); 
-
     if(!isPlaying){ 
         musica.volume = 0; 
         musica.play().then(() => {
             btn.innerHTML = "❚❚";
             isPlaying = true;
-            
             fadeInterval = setInterval(() => {
-                if (musica.volume < 0.9) {
-                    musica.volume += 0.05;
-                } else {
-                    musica.volume = 1;
-                    clearInterval(fadeInterval);
-                }
+                if (musica.volume < 0.9) musica.volume += 0.05;
+                else { musica.volume = 1; clearInterval(fadeInterval); }
             }, 75);
-
-        }).catch(e => console.log("Interacción requerida:", e));
+        }).catch(e => console.log(e));
     } else { 
         btn.innerHTML = "▶"; 
         isPlaying = false;
-
         fadeInterval = setInterval(() => {
-            if (musica.volume > 0.05) {
-                musica.volume -= 0.05;
-            } else {
-                musica.volume = 0;
-                musica.pause();
-                clearInterval(fadeInterval);
-            }
+            if (musica.volume > 0.05) musica.volume -= 0.05;
+            else { musica.volume = 0; musica.pause(); clearInterval(fadeInterval); }
         }, 75);
     }
 }
 
-// Contador
 const weddingDate = new Date("2026-10-25T17:00:00").getTime();
 setInterval(() => {
     const now = new Date().getTime();
@@ -500,7 +408,6 @@ setInterval(() => {
     document.getElementById("secs").innerText = Math.floor((gap % 60000) / 1000);
 }, 1000);
 
-// Galería
 let currentIdx = 0;
 function moveGallery(dir) {
     const track = document.getElementById('track');
@@ -509,75 +416,29 @@ function moveGallery(dir) {
 }
 
 function toggleFaq(elemento) {
-    const item = elemento.parentElement;
-    item.classList.toggle('active');
+    elemento.parentElement.classList.toggle('active');
 }
 
 function confirmarAsistencia() {
     const nombre = document.getElementById('invitado-nombre').value.trim();
     const pases = document.getElementById('invitado-pases').value;
-    
     if(nombre) {
-        const textoMsg = `¡Hola! Con inmensa alegría, la ${encodeURIComponent(nombre)} confirma su presencia para ocupar ${pases} ${pases == 1 ? 'asiento de honor' : 'asientos de honor'} en este día inolvidable. ¡Nos vemos pronto!`;
+        const textoMsg = `¡Hola! Con alegría, la ${encodeURIComponent(nombre)} confirma su presencia para ${pases} ${pases == 1 ? 'asiento' : 'asientos'}.`;
         window.open(`https://wa.me/528132654324?text=${textoMsg}`);
-    } else {
-        alert("Por favor, comparte con nosotros tu nombre para añadirte a la lista de honor.");
-    }
+    } else { alert("Por favor, pon tu nombre."); }
 }
 
 function agregarCalendario() {
     window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=La+Unión+Eterna+de+Juan+y+Valeria&dates=20261025T170000Z/20261026T020000Z`);
 }
 
-const urlBaseExcel = "https://docs.google.com/spreadsheets/d/1XG3mX5ARhqxf71OVyrdaWhIyYLxpIBsn--dmGrR57-A/formResponse";
-
-function enviarDeseo() {
-    const mensaje = document.getElementById('deseo').value.trim();
-    if(mensaje) {
-        fetch(urlBaseExcel, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({ 'entry.message': `Muro de deseos poéticos: ${mensaje}` })
-        }).then(() => {
-            alert("¡Tu bendición ha sido grabada eternamente en el corazón de los novios!");
-            document.getElementById('deseo').value = "";
-        }).catch(err => {
-            alert("¡Recibido con profundo agradecimiento! Tu mensaje se ha guardado.");
-            document.getElementById('deseo').value = "";
-        });
-    } else {
-        alert("Por favor, escribe tus pensamientos antes de enviarlos.");
-    }
-}
-
-function sugerirCancion() {
-    const cancion = prompt("Escribe el título y artista de la canción que te gustaría escuchar:");
-    if(cancion) {
-        fetch(urlBaseExcel, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({ 'entry.message': `Melodía sugerida: ${cancion}` })
-        }).then(() => {
-            alert("¡Maravillosa elección! Tu melodía ha sido agregada a la lista.");
-        }).catch(err => {
-            alert("¡Sugerencia musical recibida con éxito! Gracias por ser parte de la fiesta.");
-        });
-    }
-}
-
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('active');
     });
-}, { threshold: 0.1 });
+}, { threshold: 0.05 });
 
-document.querySelectorAll('.reveal').forEach((section) => {
-    observer.observe(section);
-});
+document.querySelectorAll('.reveal').forEach((section) => { observer.observe(section); });
 </script>
 
 </body>
