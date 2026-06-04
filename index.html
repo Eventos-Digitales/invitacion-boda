@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Unión Eterna de Juan & Valeria</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=1,700;1,900&family=Montserrat:wght=300;400;600&display=swap" rel="stylesheet">
@@ -22,17 +22,17 @@
             font-family: 'Montserrat', sans-serif;
             color: var(--texto);
             background-color: #fcfbf9;
-            line-height: 1.35; 
-            font-size: 12px !important; /* Forzamos tamaño compacto en celular */
+            line-height: 1.4; 
+            font-size: 0.8rem; /* Texto general bastante más pequeño y fino */
             overflow-x: hidden;
             -webkit-text-size-adjust: 100%;
         }
 
-        /* --- ANIMACIONES DE DESPLAZAMIENTO (RALENTIZADAS) --- */
+        /* --- ANIMACIONES DE DESPLAZAMIENTO --- */
         .reveal {
             opacity: 0;
-            transform: translateY(30px); /* Un poco más de recorrido para notar la suavidad */
-            transition: opacity 1.2s ease-out, transform 1.2s ease-out; /* De 0.6s a 1.2s para que sea más lento */
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
         }
 
         .reveal.active {
@@ -51,12 +51,12 @@
             align-items: center;
             transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
         }
-        .sobre-contenido { text-align: center; padding: 15px; max-width: 320px; width: 85%; }
-        .sobre-contenido img { width: 55px; margin-bottom: 10px; animation: heartbeat 2.5s infinite; }
+        .sobre-contenido { text-align: center; padding: 15px; max-width: 350px; width: 85%; }
+        .sobre-contenido img { width: 60px; margin-bottom: 12px; animation: heartbeat 2.5s infinite; }
         
         @keyframes heartbeat {
             0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            50% { transform: scale(1.03); }
             100% { transform: scale(1); }
         }
 
@@ -72,7 +72,7 @@
 
         section {
             position: relative;
-            padding: 30px 0; 
+            padding: 35px 0; /* Espaciado vertical más compacto */
             min-height: auto;
             display: flex;
             align-items: center;
@@ -87,25 +87,25 @@
             color: white;
         }
 
-        /* Forzado estricto de tamaños máximos pequeños para móvil */
-        .iniciales { font-family: 'Playfair Display', serif; font-size: 38px !important; font-style: italic; line-height: 1; }
-        .nombres { font-family: 'Playfair Display', serif; font-size: 15px !important; font-style: italic; }
-        .titulo { font-family: 'Playfair Display', serif; font-size: 16px !important; font-style: italic; margin-bottom: 8px; color: var(--dorado-oscuro); }
+        /* Títulos controlados estrictamente en móvil para que no se expandan */
+        .iniciales { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 12vw, 4.5rem); font-style: italic; line-height: 1; }
+        .nombres { font-family: 'Playfair Display', serif; font-size: clamp(1.05rem, 5vw, 1.8rem); font-style: italic; }
+        .titulo { font-family: 'Playfair Display', serif; font-size: clamp(1.15rem, 4.5vw, 1.5rem); font-style: italic; margin-bottom: 10px; color: var(--dorado-oscuro); }
 
         /* --- TARJETAS Y UBICACIONES --- */
         .grid-lugares {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 12px;
-            margin-top: 12px;
+            gap: 15px;
+            margin-top: 15px;
             width: 100%;
         }
 
         .card { 
             background: var(--blanco-trans); 
-            padding: 18px 12px; 
-            border-radius: 10px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            padding: 20px 15px; /* Más compacto hacia los lados */
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
         }
@@ -114,13 +114,13 @@
         .map-buttons {
             display: flex;
             flex-direction: column;
-            gap: 5px;
-            margin-top: 8px;
+            gap: 6px;
+            margin-top: 10px;
             width: 100%;
         }
         .btn-mapa {
-            padding: 8px 10px;
-            font-size: 11px !important; 
+            padding: 8px 12px;
+            font-size: 0.75rem; /* Botones de mapa más pequeños */
             border-radius: 20px;
             border: 1px solid var(--dorado);
             background: white;
@@ -129,7 +129,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 4px;
+            gap: 5px;
             font-weight: 600;
             transition: 0.2s;
             width: 100%;
@@ -140,12 +140,12 @@
         }
 
         /* --- DRESS CODE --- */
-        .dress-icons { font-size: 1.8rem; margin: 8px 0; display: flex; justify-content: center; gap: 12px; }
-        .paleta { display: flex; justify-content: center; gap: 6px; margin: 8px 0; }
-        .color-circle { width: 26px; height: 26px; border-radius: 50%; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .dress-icons { font-size: 2rem; margin: 10px 0; display: flex; justify-content: center; gap: 15px; }
+        .paleta { display: flex; justify-content: center; gap: 8px; margin: 10px 0; }
+        .color-circle { width: 30px; height: 30px; border-radius: 50%; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
 
         /* --- GALERÍA --- */
-        .gallery-container { overflow: hidden; border-radius: 8px; width: 100%; max-width: 290px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .gallery-container { overflow: hidden; border-radius: 10px; width: 100%; max-width: 320px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.06); }
         .gallery-track { display: flex; transition: transform 0.5s ease-in-out; }
         .gallery-track img { 
             width: 100%; 
@@ -155,61 +155,61 @@
         }
 
         /* --- TIMELINE --- */
-        .timeline { margin: 15px 0; position: relative; padding: 5px 0; }
-        .timeline::before { content: ''; position: absolute; left: 10px; width: 2px; height: 100%; background: var(--dorado); }
+        .timeline { margin: 20px 0; position: relative; padding: 5px 0; }
+        .timeline::before { content: ''; position: absolute; left: 12px; width: 2px; height: 100%; background: var(--dorado); }
         
         .timeline-item { 
-            margin-bottom: 15px; 
+            margin-bottom: 20px; 
             position: relative; 
             width: 100%; 
-            padding-left: 25px; 
+            padding-left: 30px; 
             text-align: left !important; 
         }
-        .timeline-item h4 { font-size: 13px !important; color: var(--dorado-oscuro); font-weight: 600; }
-        .timeline-item p { font-size: 11px !important; }
+        .timeline-item h4 { font-size: 0.85rem; color: var(--dorado-oscuro); font-weight: 600; }
+        .timeline-item p { font-size: 0.75rem; }
 
         /* --- CONTADOR --- */
-        .contador-flex { display: flex; justify-content: center; gap: 4px; margin-top: 10px; width: 100%; }
-        .count-item { background: white; padding: 5px 2px; border-radius: 6px; flex: 1; max-width: 55px; border-bottom: 2px solid var(--dorado); box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .count-num { display: block; font-size: 14px !important; font-weight: 600; color: var(--dorado-oscuro); }
-        .count-item span { font-size: 9px !important; display: block; margin-top: 1px; }
+        #contador { display: flex; justify-content: center; gap: 5px; margin-top: 12px; width: 100%; }
+        .count-item { background: white; padding: 6px 2px; border-radius: 6px; flex: 1; max-width: 60px; border-bottom: 2px solid var(--dorado); box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+        .count-num { display: block; font-size: 1rem; font-weight: 600; color: var(--dorado-oscuro); }
+        .count-item span { font-size: 0.65rem; display: block; margin-top: 1px; }
 
         /* --- FAQ ACORDEÓN --- */
-        .faq-wrapper { max-width: 100%; margin: 10px auto 0 auto; text-align: left; }
-        .faq-item { background: white; border-radius: 6px; margin-bottom: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.01); overflow: hidden; }
-        .faq-question { padding: 8px 10px; font-weight: 600; font-size: 12px !important; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; gap: 6px; }
-        .faq-question::after { content: '➔'; font-size: 9px; transform: rotate(90deg); transition: transform 0.3s; flex-shrink: 0; }
+        .faq-wrapper { max-width: 100%; margin: 12px auto 0 auto; text-align: left; }
+        .faq-item { background: white; border-radius: 6px; margin-bottom: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.01); overflow: hidden; }
+        .faq-question { padding: 10px 12px; font-weight: 600; font-size: 0.75rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; gap: 8px; }
+        .faq-question::after { content: '➔'; font-size: 0.6rem; transform: rotate(90deg); transition: transform 0.3s; flex-shrink: 0; }
         .faq-item.active .faq-question::after { transform: rotate(-90deg); }
-        .faq-answer { max-height: 0; overflow: hidden; padding: 0 10px; background: #faf9f6; transition: max-height 0.3s ease, padding 0.3s ease; font-size: 11px !important; color: #555; line-height: 1.3; }
-        .faq-item.active .faq-answer { max-height: 250px; padding: 8px 10px; }
+        .faq-answer { max-height: 0; overflow: hidden; padding: 0 12px; background: #faf9f6; transition: max-height 0.3s ease, padding 0.3s ease; font-size: 0.75rem; color: #555; line-height: 1.3; }
+        .faq-item.active .faq-answer { max-height: 250px; padding: 8px 12px; }
 
         /* --- COMPONENTES DE ENTRADA --- */
-        .input-group { margin: 8px 0; text-align: left; }
-        .input-group label { display: block; font-size: 11px !important; font-weight: 600; margin-bottom: 2px; }
-        .input-field { width: 100%; padding: 7px; border-radius: 50px; border: 1px solid #ccc; font-family: inherit; font-size: 12px !important; background: #fff; -webkit-appearance: none; }
+        .input-group { margin: 10px 0; text-align: left; }
+        .input-group label { display: block; font-size: 0.75rem; font-weight: 600; margin-bottom: 3px; }
+        .input-field { width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; font-family: inherit; font-size: 0.75rem; background: #fff; -webkit-appearance: none; }
 
         /* --- BOTONES --- */
         .boton { 
-            display: inline-flex; align-items: center; gap: 5px; 
-            padding: 9px 18px; border-radius: 50px; 
+            display: inline-flex; align-items: center; gap: 6px; 
+            padding: 10px 20px; border-radius: 50px; 
             background: var(--dorado); color: white; 
-            text-decoration: none; font-weight: 600; font-size: 12px !important;
+            text-decoration: none; font-weight: 600; font-size: 0.75rem;
             transition: 0.3s; border: none; cursor: pointer;
-            margin: 4px 0; width: 100%; justify-content: center;
+            margin: 5px 0; width: 100%; justify-content: center;
         }
         .boton:hover { background: var(--dorado-oscuro); }
 
         #musicBtn { 
             position: fixed; bottom: 12px; right: 12px; 
-            width: 34px; height: 34px; background: var(--dorado); 
+            width: 36px; height: 36px; background: var(--dorado); 
             border-radius: 50%; display: flex; align-items: center; 
             justify-content: center; color: white; z-index: 999; 
             box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-            cursor: pointer; font-size: 11px !important;
+            cursor: pointer; font-size: 0.75rem;
         }
 
         /* --- MAPAS --- */
-        iframe { width: 100%; height: 140px; border-radius: 6px; margin-top: 6px; border: 0; }
+        iframe { width: 100%; height: 150px; border-radius: 8px; margin-top: 8px; border: 0; }
 
         /* --- FONDOS --- */
         .bg-rosas { background: url("https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=60") center fixed; background-size: cover; }
@@ -217,18 +217,15 @@
 
         /* --- RESPONSIVIDAD PARA PANTALLAS GRANDES --- */
         @media (min-width: 600px) {
-            body { font-size: 13px !important; }
-            .iniciales { font-size: 55px !important; }
-            .nombres { font-size: 20px !important; }
-            .titulo { font-size: 22px !important; }
-            .grid-lugares { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+            body { font-size: 0.85rem; }
+            .grid-lugares { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
             .map-buttons { flex-direction: row; }
             .btn-mapa, .boton { width: auto; }
             .timeline::before { left: 50%; transform: translateX(-50%); }
             .timeline-item { width: 50%; padding: 0 20px; }
-            .timeline-item:nth-child(odd) { left: 0; text-align: right !important; padding-right: 25px; padding-left: 0; }
-            .timeline-item:nth-child(even) { left: 50%; padding-left: 25px; }
-            section { padding: 45px 0; }
+            .timeline-item:nth-child(odd) { left: 0; text-align: right !important; padding-right: 30px; padding-left: 0; }
+            .timeline-item:nth-child(even) { left: 50%; padding-left: 30px; }
+            section { padding: 50px 0; }
         }
     </style>
 </head>
@@ -238,7 +235,7 @@
 <div id="sobre-capa">
     <div class="sobre-contenido">
         <img src="https://cdn-icons-png.flaticon.com/512/3063/3063990.png" alt="Sobre de Invitación">
-        <p class="titulo" style="font-size: 14px !important; margin-bottom: 10px;">Un mensaje sellado con amor eterno...</p>
+        <p class="titulo" style="font-size: 1rem; margin-bottom: 12px;">Un mensaje sellado con amor eterno...</p>
         <button class="boton" onclick="abrirInvitacion()">Desvelar Nuestra Historia</button>
     </div>
 </div>
@@ -252,7 +249,7 @@
     <div class="content-wrap">
         <div class="iniciales">J & V</div>
         <div class="nombres">Nuestra Eternidad Comienza Hoy</div>
-        <p style="font-size: 12px !important; font-style: italic; font-weight: 300; margin-top: 5px;">Juan & Valeria</p>
+        <p style="font-size: 0.85rem; font-style: italic; font-weight: 300; margin-top: 6px;">Juan & Valeria</p>
         <br>
         <button class="boton" onclick="agregarCalendario()">📅 Reservar este Día</button>
     </div>
@@ -260,15 +257,15 @@
 
 <section class="reveal">
     <div class="content-wrap card">
-        <p style="font-style: italic; font-size: 12px !important; color: var(--dorado-oscuro); font-weight: 600;">
+        <p style="font-style: italic; font-size: 0.8rem; color: var(--dorado-oscuro); font-weight: 600;">
             "Guiados por el amor más puro, sostenidos por su ejemplo incondicional y cobijados bajo la bendición eterna de nuestros amados padres:"
         </p>
         <br><br>
-        <div class="titulo">Padres de la Novia</div>
-        <p style="font-weight: 600; font-size: 12px !important; letter-spacing: 0.5px;">María López & Carlos Hernández</p>
+        <div class="titulo" style="font-size: 1.05rem;">Padres de la Novia</div>
+        <p style="font-weight: 600; font-size: 0.75rem; letter-spacing: 0.5px;">María López & Carlos Hernández</p>
         <br>
-        <div class="titulo">Padres del Novio</div>
-        <p style="font-weight: 600; font-size: 12px !important; letter-spacing: 0.5px;">Laura Martínez & Roberto Gómez</p>
+        <div class="titulo" style="font-size: 1.05rem;">Padres del Novio</div>
+        <p style="font-weight: 600; font-size: 0.75rem; letter-spacing: 0.5px;">Laura Martínez & Roberto Gómez</p>
     </div>
 </section>
 
@@ -276,7 +273,7 @@
     <div class="overlay"></div>
     <div class="content-wrap card">
         <div class="titulo">Nuestra Sagrada Travesía</div>
-        <p style="font-style: italic; font-size: 11px !important; max-width: 600px; margin: 0 auto 10px auto;">Cada segundo a tu lado ha sido un capítulo escrito por el destino. Así se entrelazaron nuestras almas rumbo al altar:</p>
+        <p style="font-style: italic; font-size: 0.75rem; max-width: 600px; margin: 0 auto 12px auto;">Cada segundo a tu lado ha sido un capítulo escrito por el destino. Así se entrelazaron nuestras almas rumbo al altar:</p>
         <div class="timeline">
             <div class="timeline-item"><h4>El Primer Destello (2020)</h4><p>El día que el universo cruzó nuestras miradas y la vida cambió para siempre.</p></div>
             <div class="timeline-item"><h4>Cómplices del Mundo (2022)</h4><p>Nuestra primera gran aventura juntos, donde supimos que éramos un solo latido.</p></div>
@@ -288,8 +285,8 @@
 <section class="reveal">
     <div class="content-wrap">
         <div class="titulo">El Instante Anhelado</div>
-        <p style="font-size: 12px !important; font-style: italic; margin-bottom: 8px;">25 de Octubre, 2026 — Cada latido nos acerca al momento en que seremos uno solo ante el altar.</p>
-        <div class="contador-flex">
+        <p style="font-size: 0.8rem; font-style: italic; margin-bottom: 10px;">25 de Octubre, 2026 — Cada latido nos acerca al momento en que seremos uno solo ante el altar.</p>
+        <div id="contador">
             <div class="count-item"><span id="days" class="count-num">0</span> <span>Días</span></div>
             <div class="count-item"><span id="hours" class="count-num">0</span> <span>Horas</span></div>
             <div class="count-item"><span id="mins" class="count-num">0</span> <span>Minas</span></div>
@@ -302,12 +299,12 @@
     <div class="overlay"></div>
     <div class="content-wrap">
         <div class="titulo">Los Escenarios de Nuestro Amor</div>
-        <p style="max-width: 600px; margin: 0 auto 8px auto; font-style: italic; font-size: 11px !important;">Tu presencia es el regalo más grande. Acompáñanos a escribir las páginas de este día tan sagrado:</p>
+        <p style="max-width: 600px; margin: 0 auto 10px auto; font-style: italic; font-size:0.75rem;">Tu presencia es el regalo más grande. Acompáñanos a escribir las páginas de este día tan sagrado:</p>
         
         <div class="grid-lugares">
             <div class="card">
-                <div class="titulo">El Voto Sagrado</div>
-                <p style="font-size: 11px !important;"><strong>Parroquia San José</strong><br>Acompáñanos a consagrar nuestro amor ante el altar.<br>⏱ Con cita a las 5:00 PM</p>
+                <div class="titulo" style="font-size: 1.05rem;">El Voto Sagrado</div>
+                <p style="font-size:0.75rem;"><strong>Parroquia San José</strong><br>Acompáñanos a consagrar nuestro amor ante el altar.<br>⏱ Con cita a las 5:00 PM</p>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3591.7347901016625!2d-100.1912445!3d25.779313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662eba10c7bf30b%3A0xc39f201083161c94!2sParroquia%20San%20Jos%C3%A9%20(Apodaca)!5e0!3m2!1ses-419!2smx!4v1710000000000!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy"></iframe>
                 <div class="map-buttons">
                     <a class="btn-mapa" href="https://maps.app.goo.gl/9ZpZ36Y8B3wzS8vM7" target="_blank">🗺️ Trazar Ruta (Maps)</a>
@@ -317,8 +314,8 @@
             </div>
             
             <div class="card">
-                <div class="titulo">La Gran Celebración</div>
-                <p style="font-size: 11px !important;"><strong>Salón Jardín Real</strong><br>Brindemos, bailemos y celebremos la magia de estar juntos.<br>⏱ Recepción a partir de las 7:30 PM</p>
+                <div class="titulo" style="font-size: 1.05rem;">La Gran Celebración</div>
+                <p style="font-size:0.75rem;"><strong>Salón Jardín Real</strong><br>Brindemos, bailemos y celebremos la magia de estar juntos.<br>⏱ Recepción a partir de las 7:30 PM</p>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.213233212879!2d-100.2032412!3d25.7645121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662eba5431ab45d%3A0x24151bc2150bf42c!2sSalon%20Jardin%20Real!5e0!3m2!1ses-419!2smx!4v1710000000001!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy"></iframe>
                 <div class="map-buttons">
                     <a class="btn-mapa" href="https://maps.app.goo.gl/YcWk48F2z3zQ8vZ7A" target="_blank">🗺️ Trazar Ruta (Maps)</a>
@@ -333,7 +330,7 @@
 <section class="reveal">
     <div class="content-wrap">
         <div class="titulo">Nuestros Instantes Memorables</div>
-        <p style="font-style: italic; font-size: 11px !important; margin-bottom: 10px;">Retazos de una vida rebosante de risas, miradas cómplices y un amor inquebrantable.</p>
+        <p style="font-style: italic; font-size:0.75rem; margin-bottom: 12px;">Retazos de una vida rebosante de risas, miradas cómplices y un amor inquebrantable.</p>
         <div class="gallery-container">
             <div class="gallery-track" id="track">
                 <img src="https://traveler.marriott.com/es/wp-content/uploads/sites/2/2024/02/GettyImages-929904308-scaled.jpg">
@@ -342,7 +339,7 @@
             </div>
         </div>
         <br>
-        <div style="display:flex; justify-content:center; gap:5px; max-width:290px; margin:0 auto;">
+        <div style="display:flex; justify-content:center; gap:6px; max-width:320px; margin:0 auto;">
             <button class="boton" onclick="moveGallery(-1)">❮ Anterior</button>
             <button class="boton" onclick="moveGallery(1)">Siguiente ❯</button>
         </div>
@@ -353,24 +350,24 @@
     <div class="overlay"></div>
     <div class="content-wrap card">
         <div class="titulo">Código de Etiqueta</div>
-        <p style="font-size: 12px !important; letter-spacing: 1px; font-weight: 600; color: var(--dorado-oscuro);">FORMAL RIGUROSO</p>
-        <p style="font-style: italic; font-size: 11px !important; margin-top: 4px;">Queremos verlos brillar en nuestra noche más especial. Vístanse con su máxima elegancia y distinción.</p>
+        <p style="font-size: 0.8rem; letter-spacing: 1.2px; font-weight: 600; color: var(--dorado-oscuro);">FORMAL RIGUROSO</p>
+        <p style="font-style: italic; font-size: 0.75rem; margin-top: 5px;">Queremos verlos brillar en nuestra noche más especial. Vístanse con su máxima elegancia y distinción.</p>
         <div class="dress-icons">
             <span>👔</span>
             <span>👗</span>
         </div>
-        <p style="font-weight: 600; font-size: 11px !important;">Inspiración para tu atuendo:</p>
+        <p style="font-weight: 600; font-size:0.75rem;">Inspiración para tu atuendo:</p>
         <div class="paleta">
             <div class="color-circle" style="background: #2c3e50;"></div>
             <div class="color-circle" style="background: #95a5a6;"></div>
             <div class="color-circle" style="background: #d4af37;"></div>
         </div>
-        <p style="color: #b30000; font-weight: 600; font-size: 10px !important; font-style: italic; padding: 0 5px;">
+        <p style="color: #b30000; font-weight: 600; font-size: 0.7rem; font-style: italic; padding: 0 5px;">
             * Con profundo cariño, les pedimos reservar el color blanco exclusivamente para la radiante novia.
         </p>
         <br><br>
-        <div class="titulo">¿Qué melodía encenderá tu alma?</div>
-        <p style="font-style: italic; font-size: 11px !important; margin-bottom: 6px;">Ayúdanos a armar la banda sonora de una noche inolvidable:</p>
+        <div class="titulo" style="font-size: 1.05rem; margin-bottom: 3px;">¿Qué melodía encenderá tu alma?</div>
+        <p style="font-style: italic; font-size:0.75rem; margin-bottom: 8px;">Ayúdanos a armar la banda sonora de una noche inolvidable:</p>
         <button class="boton" onclick="sugerirCancion()">🎵 Sugerir una Canción</button>
     </div>
 </section>
@@ -378,8 +375,8 @@
 <section class="reveal">
     <div class="content-wrap card">
         <div class="titulo">Muro de Deseos</div>
-        <p style="margin-bottom: 8px; font-size: 11px !important; font-style: italic;">Plasma aquí las palabras que brotan de tu corazón. Tus buenos deseos serán el faro de nuestro nuevo hogar:</p>
-        <textarea id="deseo" rows="3" style="width:100%; padding:8px; border-radius:6px; border:1px solid #ccc; font-family:inherit; font-size: 11px !important; resize:none;" placeholder="Escribe tu mensaje aquí..."></textarea>
+        <p style="margin-bottom: 10px; font-size:0.75rem; font-style: italic;">Plasma aquí las palabras que brotan de tu corazón. Tus buenos deseos serán el faro de nuestro nuevo hogar:</p>
+        <textarea id="deseo" rows="4" style="width:100%; padding:8px; border-radius:6px; border:1px solid #ccc; font-family:inherit; font-size: 0.75rem; resize:none;" placeholder="Escribe tu mensaje de felicitación para los novios aquí..."></textarea>
         <button class="boton" onclick="enviarDeseo()">Inmortalizar mi Mensaje</button>
     </div>
 </section>
@@ -387,7 +384,7 @@
 <section class="reveal">
     <div class="content-wrap card">
         <div class="titulo">Detalles Importantes</div>
-        <p style="font-style: italic; font-size: 11px !important; margin-bottom: 8px;">Queremos que disfrutes cada instante sin una sola preocupación. Aquí respondemos con amor a tus dudas:</p>
+        <p style="font-style: italic; font-size:0.75rem; margin-bottom: 10px;">Queremos que disfrutes cada instante sin una sola preocupación. Aquí respondemos con amor a tus dudas:</p>
         
         <div class="faq-wrapper">
             <div class="faq-item">
@@ -408,14 +405,14 @@
 
 <section class="bg-rosas reveal">
     <div class="overlay"></div>
-    <div class="content-wrap card" style="max-width: 400px;">
+    <div class="content-wrap card" style="max-width: 450px;">
         <div class="titulo">El Honor de tu Compañía</div>
         
-        <p style="color: var(--dorado-oscuro); font-weight: 600; font-style: italic; margin-bottom: 10px; font-size: 12px !important; line-height: 1.3;">
+        <p style="color: var(--dorado-oscuro); font-weight: 600; font-style: italic; margin-bottom: 12px; font-size: 0.8rem; line-height: 1.3;">
             "Nuestra historia no estaría completa sin tu presencia. Gracias por ser parte de nuestra vida."
         </p>
 
-        <p style="margin-bottom: 8px; font-size: 11px !important; font-style: italic;">Por favor, confírmanos tu valiosa asistencia indicando tu nombre y el número de asientos:</p>
+        <p style="margin-bottom: 10px; font-size:0.75rem; font-style: italic;">Por favor, confírmanos tu valiosa asistencia indicando tu nombre y el número de asientos:</p>
         
         <div class="input-group">
             <label for="invitado-nombre">Nombre de la Familia o Invitado:</label>
@@ -434,8 +431,8 @@
         </div>
 
         <br>
-        <button class="boton" style="font-size: 12px !important;" onclick="confirmarAsistencia()">✓ CONFIRMAR POR WHATSAPP</button>
-        <div class="nombres" style="margin-top: 12px; color: var(--dorado); font-size: 20px !important; font-family: 'Playfair Display', serif;">Juan & Valeria</div>
+        <button class="boton" style="font-size: 0.8rem;" onclick="confirmarAsistencia()">✓ CONFIRMAR POR WHATSAPP</button>
+        <div class="nombres" style="margin-top: 15px; color: var(--dorado); font-size: 1.5rem; font-family: 'Playfair Display', serif;">Juan & Valeria</div>
     </div>
 </section>
 
@@ -489,7 +486,7 @@ function toggleMusic(){
     }
 }
 
-// Contador
+// Contador (Fecha fija establecida en 2026 para la demo)
 const weddingDate = new Date("2026-10-25T17:00:00").getTime();
 setInterval(() => {
     const now = new Date().getTime();
