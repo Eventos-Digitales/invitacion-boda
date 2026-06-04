@@ -28,11 +28,11 @@
             -webkit-text-size-adjust: 100%;
         }
 
-        /* --- ANIMACIONES DE DESPLAZAMIENTO --- */
+        /* --- ANIMACIONES DE DESPLAZAMIENTO (RALENTIZADAS) --- */
         .reveal {
             opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 1.2s ease, transform 1.2s ease;
+            transform: translateY(30px); /* Un poco más de recorrido para notar la suavidad */
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out; /* De 0.6s a 1.2s para que sea más lento */
         }
 
         .reveal.active {
@@ -169,7 +169,7 @@
         .timeline-item p { font-size: 11px !important; }
 
         /* --- CONTADOR --- */
-        #contador { display: flex; justify-content: center; gap: 4px; margin-top: 10px; width: 100%; }
+        .contador-flex { display: flex; justify-content: center; gap: 4px; margin-top: 10px; width: 100%; }
         .count-item { background: white; padding: 5px 2px; border-radius: 6px; flex: 1; max-width: 55px; border-bottom: 2px solid var(--dorado); box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
         .count-num { display: block; font-size: 14px !important; font-weight: 600; color: var(--dorado-oscuro); }
         .count-item span { font-size: 9px !important; display: block; margin-top: 1px; }
@@ -289,7 +289,7 @@
     <div class="content-wrap">
         <div class="titulo">El Instante Anhelado</div>
         <p style="font-size: 12px !important; font-style: italic; margin-bottom: 8px;">25 de Octubre, 2026 — Cada latido nos acerca al momento en que seremos uno solo ante el altar.</p>
-        <div id="contador">
+        <div class="contador-flex">
             <div class="count-item"><span id="days" class="count-num">0</span> <span>Días</span></div>
             <div class="count-item"><span id="hours" class="count-num">0</span> <span>Horas</span></div>
             <div class="count-item"><span id="mins" class="count-num">0</span> <span>Minas</span></div>
